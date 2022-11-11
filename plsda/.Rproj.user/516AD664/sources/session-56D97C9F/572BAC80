@@ -1,0 +1,26 @@
+{
+    "id": "572BAC80",
+    "path": "~/GitHub/PLS-Package/plsda/R/split_sample.R",
+    "project_path": "R/split_sample.R",
+    "type": "r_source",
+    "hash": "1895404215",
+    "contents": "",
+    "dirty": true,
+    "created": 1668170923226.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "21,1",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1668170792,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1668171269104,
+    "read_only": false,
+    "read_only_alternatives": []
+}
