@@ -17,4 +17,6 @@
 scale<-function(x, reduce=T){
 
 
+
 }
+

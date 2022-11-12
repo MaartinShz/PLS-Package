@@ -7,7 +7,6 @@ plsda = function(ncomp, normalize = F, multi_class = 'auto'){
   class(instance) = "PLSDA"
 
 
-
 }
 
 #surcharge de la fonction print
