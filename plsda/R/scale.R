@@ -14,7 +14,7 @@
 #' @examples
 #' y = get_dummies(iris$Species)
 
-scale<-function(x, reduce=T){
+scale<-function (x, reduce=T){
 
 
 }
