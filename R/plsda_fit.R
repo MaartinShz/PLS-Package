@@ -59,19 +59,24 @@ plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10){
     while(abs(sum(w.old^2)-sum(w^2)) > 1e-10){
       #browser()
 
-      print(class(t(u)))
-      print(class(u))
-      print(t(u))
-      print(u)
 
       w = (t(x) %*% u) / (sum(u^2)) ###sum(u^2)
-      w = w / sqrt(as.numeric(t(w)) %*% (as.numeric(w)))
-      t = t(x) %*% w / (t(w) %*% w)
-      q = (t(y) %*% t) / (t(t) %*% t)
-      u = t(y) %*% q / (t(q) %*% q)
-    }
+      w = w / sqrt(sum(w^2))
 
-    P = (t(x) %*% t) / (t(as.matrix(t)) %*% as.matrix(t))
+      print(t(x))
+      print(class(t(x)))
+
+      #browser()
+
+
+      print(w)
+
+
+      t = t(x) %*% w / (sum(w^2))
+      q = (t(y) %*% t) / (sum(t^2))
+      u = t(y) %*% q / (sum(q^2))
+    }
+    P = (t(x) %*% t) / (sum(t^2))
 
     x = x - t %*% t(P)
 
