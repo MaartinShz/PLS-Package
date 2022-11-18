@@ -1,3 +1,21 @@
+#' Titre
+#'
+#' Description
+#'
+#' @usage
+#' utilisation
+#'
+#' @param
+#' argument 1
+#' @return
+#' Value return
+#'
+#'
+#' @examples
+#'
+
+
+
 plsda = function(ncomp, normalize = F, multi_class = 'auto'){
   #vérification des hyperparamètres
   #if(){}
@@ -18,3 +36,4 @@ print.PLS = function(objet){
 summary.PLS = function(objet){
   cat("type : ", class(objet), "\n")
 }
+
