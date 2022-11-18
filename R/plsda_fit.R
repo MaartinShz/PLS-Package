@@ -63,9 +63,6 @@ plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10){
       w = (t(x) %*% u) / (sum(u^2)) ###sum(u^2)
       w = w / sqrt(sum(w^2))
 
-      print(t(x))
-      print(class(t(x)))
-
       t = t(x) %*% w / (sum(w^2))
 
       q = (t(y) %*% t) / (sum(t^2))
