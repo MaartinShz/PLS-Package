@@ -13,9 +13,6 @@
 #'
 #' @examples
 #'
-
-
-
 plsda = function(ncomp, normalize = F, multi_class = 'auto'){
   #vérification des hyperparamètres
   #if(){}
@@ -24,16 +21,21 @@ plsda = function(ncomp, normalize = F, multi_class = 'auto'){
   instance = list()
   class(instance) = "PLSDA"
 
+  return(instance)
+
+
 
 }
 
 #surcharge de la fonction print
-print.PLS = function(objet){
+print.plsda = function(objet){
   cat("type : ", class(objet), "\n")
+
 }
 
 #surcharge de la fonction summary
-summary.PLS = function(objet){
+summary.plsda = function(objet){
   cat("type : ", class(objet), "\n")
+
 }
 

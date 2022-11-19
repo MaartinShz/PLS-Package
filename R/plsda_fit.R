@@ -14,8 +14,12 @@
 #' @examples
 #'
 
+plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, nfold = 10, centre=T){
 
-plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10, centre=T){
+  if (class(ObjectPLSDA)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+
 
   #rang de la matrice
   a = min(nrow(data), ncol(data)) # si ncomp is null
@@ -78,6 +82,6 @@ plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10, centr
   return(q)
 }
 
-data = iris
-print(plsda_fit(data$Species, data))
+#data = iris
+#print(plsda_fit(data$Species, data))
 
