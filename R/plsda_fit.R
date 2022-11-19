@@ -25,7 +25,7 @@ plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10, centr
   }
 
   # selection de X et Y
-  x= data[,-5] #to do
+  x= data[,-ncol(data)]
   Y= var.cible
 
   if(centre){
@@ -35,51 +35,49 @@ plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10, centr
 
 
   # recodage de la variable cible
-  y <- get_dummies(Y)
+  y = get_dummies(Y)
 
 
   #matrice des poids des composantes de X
-  w <- data.frame(matrix(rep(0), nrow = ncol(x), ncol=ncomp))
-  rownames(w) <- colnames(x)
+  w = data.frame(matrix(rep(0), nrow = ncol(x), ncol=ncomp))
+  rownames(w) = colnames(x)
 
   #matrice des composantes de X # loadings # var latentes
-  P <- data.frame(matrix(rep(0), nrow = ncol(x), ncol=ncomp))
-  rownames(P) <- colnames(x)
+  P = data.frame(matrix(rep(0), nrow = ncol(x), ncol=ncomp))
+  rownames(P) = colnames(x)
 
   #matrice des scores de X
-  t <- data.frame(matrix(rep(0), nrow = nrow(x), ncol=ncomp))
+  t = data.frame(matrix(rep(0), nrow = nrow(x), ncol=ncomp))
 
   #matrice des scores de Y
-  u <- data.frame(matrix(rep(0), nrow = nrow(x), ncol=ncomp))
+  u = data.frame(matrix(rep(0), nrow = nrow(x), ncol=ncomp))
 
   #matrice des composantes de Y # loadings # var latentes
-  q <- data.frame(matrix(rep(0), nrow = ncol(y), ncol = ncomp))
-  rownames(q) <- colnames(y)
+  q = data.frame(matrix(rep(0), nrow = ncol(y), ncol = ncomp))
+  rownames(q) = colnames(y)
 
   for(k in 1:ncomp){
     u <- as.matrix(y[,1])
     w.old = 1
     while(abs(sum(w.old^2)-sum(w^2)) > 1e-10){
+
+      w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)
+      w = w / sqrt(sum(w^2)) # normalization de w
+
+      z = t(x)
       #browser()
 
-
-      w = (t(x) %*% u) / (sum(u^2)) ###sum(u^2)
-      w = w / sqrt(sum(w^2))
-
-      t = t(x) %*% w / (sum(w^2))
-
+      t = x %*% w / (sum(w^2)) #t(x)
       q = (t(y) %*% t) / (sum(t^2))
-      u = t(y) %*% q / (sum(q^2))
+      u = (y %*% q) / (sum(q^2)) #t(y)
     }
     P = (t(x) %*% t) / (sum(t^2))
-
     x = x - t %*% t(P)
-
     y = y - t %*% as.matrix(t(q))
   }
-  return(w)
+  return(q)
 }
-data = iris
-plsda_fit(data$Species, data)
 
+data = iris
+print(plsda_fit(data$Species, data))
 
