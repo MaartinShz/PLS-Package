@@ -15,7 +15,7 @@
 #'
 
 
-plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10){
+plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10, centre=T){
 
   #rang de la matrice
   a = min(nrow(data), ncol(data)) # si ncomp is null
@@ -28,8 +28,11 @@ plsda_fit<-function(var.cible,data,ncomp=NULL, var.select = F, nfold = 10){
   x= data[,-5] #to do
   Y= var.cible
 
+  if(centre){
   # centre-reduire les explicatives
-  x= scale(x)
+  x = scale(x)
+  }
+
 
   # recodage de la variable cible
   y <- get_dummies(Y)
