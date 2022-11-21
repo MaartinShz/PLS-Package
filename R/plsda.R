@@ -13,12 +13,12 @@
 #'
 #' @examples
 #'
-plsda = function(ncomp, normalize = F, multi_class = 'auto'){
+plsda = function(ncomp=2, normalize = F, multi_class = 'auto'){
   #vérification des hyperparamètres
   #if(){}
 
   #création de l'instance
-  instance = list()
+  instance = list("ncomp"=ncomp)
   class(instance) = "PLSDA"
 
   return(instance)

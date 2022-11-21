@@ -79,9 +79,29 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, nf
     x = x - t %*% t(P)
     y = y - t %*% as.matrix(t(q))
   }
-  return(q)
+
+
+ x_rotation = w%*%solve(t(P)%*%w)
+ coef = x_rotation%*%t(q)
+ coef = coef*sapply(Y,f = sd)
+ intercept = colMeans(Y)
+
+
+ obj = list("x"=x,
+            "y"=y,
+            "y_loadings"=q,
+            "y_scores"=u,
+            "x_loadings"=P,
+            "x_weights"=w,
+            "x_scores"=t,
+            "ncomp"=ncomp,
+            "coeff"= coef,
+            "intercept"=intercept)
+
+
+  return(obj)
+
 }
 
 #data = iris
 #print(plsda_fit(data$Species, data))
-
