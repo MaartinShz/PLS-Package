@@ -9,9 +9,10 @@ cross_validation = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
       for(i in 1:cv){
 
         #Création dataset d'apprentissage et test aléatoire
-        shuffled_data = data[sample(1:nrow(data)),]
-        train = head(shuffled_data,n)
-        test = tail(shuffled_data,nrow(data)-n)
+        m = matrix(FALSE, nrow = 1, ncol = 150)
+        m[,1:(n*0.3)]=TRUE
+        ind = sample(m)
+        fold[[i]] = ind
       }
     }
 

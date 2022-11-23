@@ -14,7 +14,7 @@
 #' @examples
 #'
 
-plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, nfold = 10, centre=T){
+plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, centre=T){
 
   if (class(ObjectPLSDA)!="PLSDA") {
     stop("Object's class is not PLSDA")
