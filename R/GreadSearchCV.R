@@ -1,4 +1,4 @@
-cross_validation = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
+GridSearchCV = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
 
     n = nrow(data)
     shuffled_data = data[sample(1:n),]
