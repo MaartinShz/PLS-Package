@@ -88,6 +88,9 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
     x = x - t %*% t(P)
     y = y - t %*% as.matrix(t(q))
 
+    print(w)
+    print(t)
+
 
       #stockage des colonnes
 
@@ -124,7 +127,7 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
             #"intercept"=intercept)
 
 
-  return(obj)
+  return(2)
 
 }
 
