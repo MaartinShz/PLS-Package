@@ -27,12 +27,9 @@ plsda_predict<-function(object, Xtest, type="posterior"){
 
   x = scale(Xtest)
 
-  print(object$coefficients)
-  print(object$coefficients)
+  y_pred = x%*% as.matrix(object$coefficients)# + object$intercept
 
-  y_pred = t(x)%*%object$coefficients+object$intercept
-
-  temp = apply(ypred,1,exp)
+  temp = apply(y_pred,1,exp)
   Ysoftmax = t(temp/colSums(temp))
 
   if (type=="posterior"){
@@ -43,14 +40,14 @@ plsda_predict<-function(object, Xtest, type="posterior"){
     return(as.factor(levels(object$y)[pred]))
   }
 
+
 }
 
 
 obj = plsda()
 obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
-
 xtest= iris[,-ncol(iris)]
-print(plsda_predict(obj,xtest))
+plsda_predict(obj,xtest)
 
 
 
