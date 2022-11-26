@@ -21,10 +21,16 @@ plsda_predict<-function(object, Xtest, type="posterior"){
   if (type != "posterior" & type != "class"){
     stop("incorrect type")
   }
+  if (!is.data.frame(Xtest)){ #check if data is a dataframe
+    stop("data must be a dataframe")
+  }
 
   x = scale(Xtest)
 
-  y_pred = t(x)%*%objects$coeff+objects$intercept
+  print(object$coefficients)
+  print(object$coefficients)
+
+  y_pred = t(x)%*%object$coefficients+object$intercept
 
   temp = apply(ypred,1,exp)
   Ysoftmax = t(temp/colSums(temp))
@@ -41,7 +47,11 @@ plsda_predict<-function(object, Xtest, type="posterior"){
 
 
 obj = plsda()
-plsda_fit(obj,iris$Species,iris)
+obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
+
+xtest= iris[,-ncol(iris)]
+print(plsda_predict(obj,xtest))
+
 
 
 

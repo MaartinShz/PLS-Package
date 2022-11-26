@@ -20,11 +20,14 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
     stop("Object's class is not PLSDA")
   }
 
+  if (!is.data.frame(data)){ #check if data is a dataframe
+    stop("data must be a dataframe")
+  }
 
-  #rang de la matrice
-  a = min(nrow(data), ncol(data)) # si ncomp is null
 
-  if(is.null(ncomp)){
+  if(is.null(ncomp) || !is.numeric(ncomp)){
+    #rang de la matrice
+    a = min(nrow(data), ncol(data)) # si ncomp is null
     ncomp = a
   }
   ###########################
@@ -100,32 +103,26 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
 
   }
 
+  x_rotation = as.matrix(Xweights) %*%  solve(t(Xloadings)%*%as.matrix(Xweights))
+  coeff = x_rotation%*%t(Yloadings)
+  ecart = sapply(data.frame(y),sd)
+  coeff = coeff*ecart
 
+  intercept = colMeans(y)
 
-
-
-
- #x_rotation = w%*%solve(t(P)%*%w)
- #coef = x_rotation%*%t(q)
- #ecart = sapply(y,FUN= sd)
-
- #coef = coef*ecart
- #intercept = colMeans(y)
-
-
- obj = list("x"=x,
+  obj = list("x"=x,
             "y"=y,
             "y_loadings"=Yloadings,
             "y_scores"=Yscores,
-            "x_loadings"=Xloadings,
             "x_weights"=Xweights,
+            "x_loadings"=Xloadings,
             "x_scores"=Xscores,
-            "ncomp"=ncomp)#,
-            #"coeff"= coeff,
-            #"intercept"=intercept)
+            "ncomp"=ncomp,
+            "coefficients"= coeff,
+            "intercept"=intercept)
+  class(obj) = "PLSDA"
 
-
-  return(obj)
+ return(obj)
 
 }
 
