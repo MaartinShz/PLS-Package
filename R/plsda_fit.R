@@ -66,42 +66,40 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
 
   ###########################  ###########################
 
-  w=0.5
-
   for(k in 1:ncomp){
     u <- as.matrix(y[,1])
 
-    while(abs(1-sum(w^2)) > 1e-10){
+    w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
+    w = w / sqrt(sum(w^2)) # normalization de w
 
-      w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
-      w = w / sqrt(sum(w^2)) # normalization de w
+    w_new=0
 
-      #browser()
+    while(abs(mean(w)-mean(w_new)) > 1e-10){
+
+      w_new=w
 
       t = x %*% w / (sum(w^2)) #t(x) #matrice des scores de X
       q = (t(y) %*% t) / (sum(t^2))  #matrice des composantes de Y # loadings
-
       u = (y %*% q) / (sum(q^2)) #t(y) #matrice des scores de Y
+      w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
+      w = w / sqrt(sum(w^2)) # normalization de w
     }
 
-    P = (t(x) %*% t) / (sum(t^2)) #matrice des composantes de X # loadings
+    P = (t(x) %*% as.matrix(t)) / (sum(t^2)) #matrice des composantes de X # loadings
     x = x - t %*% t(P)
-    y = y - t %*% as.matrix(t(q))
+    y = y - (t %*% t(q))
 
-    print(w)
-    print(t)
+    #stockage des colonnes
 
-
-      #stockage des colonnes
-
-  Xweights[, k] <- w #
-  Xscores[, k] <- t #
-  Yscores[, k] <- u
-  Xloadings[, k] <- P
-  Yloadings[, k] <- q
+    Xweights[, k] <- w
+    Xscores[, k] <- t
+    Yscores[, k] <- u
+    Xloadings[, k] <- P
+    Yloadings[, k] <- q
 
 
   }
+
 
 
 
@@ -127,7 +125,7 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
             #"intercept"=intercept)
 
 
-  return(2)
+  return(obj)
 
 }
 
