@@ -2,18 +2,18 @@
 % Please edit documentation in R/get_dummies.R
 \name{get_dummies}
 \alias{get_dummies}
-\title{Titre}
+\title{get_dummies()}
 \usage{
-utilisation
+get_dummies(y)
 }
 \arguments{
-\item{argument}{1}
+\item{y}{a vector, factor that will be transformed, often used for your target variable}
 }
 \value{
-Value return
+return a matrix with all dummy values of the param in entry
 }
 \description{
-Description
+This function allows you to convert categorical variables into numerical variables. The different modalities are recorded in new columns that encode the presence of this category with binary values
 }
 \examples{
 y = get_dummies(iris$Species)

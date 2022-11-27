@@ -1,17 +1,22 @@
-#' Titre
+#' PLSDA Class
 #'
-#' Description
+#' Class of the object PLSDA, this class is used to create an object Plsda, to use a Partial least squares regression method.
+#'
 #'
 #' @usage
-#' utilisation
+#' obj = plsda()
 #'
 #' @param
-#' argument 1
+#'
 #' @return
-#' Value return
+#' obj plsda object
 #'
 #'
 #' @examples
+#' obj = plsda()
+#'
+#' print(obj)
+#' summary(obj)
 #'
 plsda = function(ncomp=2, normalize = F, multi_class = 'auto'){
   #vérification des hyperparamètres

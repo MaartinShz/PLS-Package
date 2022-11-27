@@ -1,18 +1,26 @@
-#' Titre
+#' plsda_fit
 #'
-#' Description
+#' Method to use The Partial least squares regression
+#' It initialize the method and train the model with the pls regression
+#' to make a prediction on a dataset
 #'
 #' @usage
-#' utilisation
+#' plsda_fit(obj,data$Species, data, ncomp=2)
 #'
 #' @param
-#' argument 1
-#' @return
-#' Value return
+#' ObjectPLSDA PLDA Object
+#' var.cible vector of the target data of the train dataset
+#' data dataframe of the train dataset
+#' ncomp integer number of composant
+#' var.select boolean made a variable selection or not
+#' centre boolean if the data need to be normalize
 #'
+#' @return
+#' obj plsda object
 #'
 #' @examples
-#'
+#'obj = plsda()
+#'plsda_fit(obj,iris$Species, iris, ncomp=2)
 
 plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, centre=T){
 
@@ -26,25 +34,27 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
 
 
   if(is.null(ncomp) || !is.numeric(ncomp)){
-    #rang de la matrice
-    a = min(nrow(data), ncol(data)) # si ncomp is null
-    ncomp = a
+    # if ncomp is null or in a wrong format we take the Range of the matrix
+    ncomp = min(nrow(data), ncol(data))
   }
   ###########################
 
-  # selection de X et Y
+  # selection of X the predictive data  and  Y the target dataz
   x= data[,-ncol(data)]
   Y= var.cible
+  # recode in dummy values the target data
+  y = get_dummies(Y)
 
   if(centre){
-    # centre-reduire les explicatives
+    # data normalization
     x = scale(x)
+    y = scale(y)
   }
 
 
-  # recodage de la variable cible
-  y = get_dummies(Y)
-  y = scale(y)
+
+
+
 
 
   ###########################  ###########################
@@ -126,6 +136,6 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
 
 }
 
-data = iris
-obj = plsda()
-print(plsda_fit(obj,data$Species, data, ncomp=2))
+#data = iris
+#obj = plsda()
+#print(plsda_fit(obj,data$Species, data, ncomp=2))

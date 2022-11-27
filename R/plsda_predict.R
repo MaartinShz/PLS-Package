@@ -1,17 +1,27 @@
-#' Titre
+#' plsda_predict
 #'
-#' Description
+#' Method to use The Partial least squares regression Prediction
+#' It make a prediction on test data
 #'
 #' @usage
-#' utilisation
+#' plsda_predict(obj,xtest)
 #'
 #' @param
-#' argument 1
+#' object PLDA Object
+#' Xtest dataframe of the test dataset with no target variable
+#' type "posterior" or "class" return format of the method
+#'
 #' @return
-#' Value return
+#' type= posterior
+#' type= class
 #'
 #'
 #' @examples
+#'#obj = plsda()
+#'obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
+#'xtest= iris[,-ncol(iris)]
+#'plsda_predict(obj,xtest)
+#'
 #'
 plsda_predict<-function(object, Xtest, type="posterior"){
   if (class(object)!="PLSDA") {
@@ -43,11 +53,6 @@ plsda_predict<-function(object, Xtest, type="posterior"){
 
 }
 
-
-obj = plsda()
-obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
-xtest= iris[,-ncol(iris)]
-plsda_predict(obj,xtest)
 
 
 
