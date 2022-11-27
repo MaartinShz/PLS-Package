@@ -9,7 +9,7 @@
 #'
 #' @param
 #' ObjectPLSDA PLDA Object
-#' var.cible vector of the target data of the train dataset
+#' formula vector of the target data of the train dataset
 #' data dataframe of the train dataset
 #' ncomp integer number of composant
 #' var.select boolean made a variable selection or not
@@ -22,7 +22,7 @@
 #'obj = plsda()
 #'plsda_fit(obj,iris$Species, iris, ncomp=2)
 
-plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, centre=T){
+plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, centre=T){
 
   if (class(ObjectPLSDA)!="PLSDA") {
     stop("Object's class is not PLSDA")
@@ -41,7 +41,7 @@ plsda_fit<-function(ObjectPLSDA, var.cible, data, ncomp=NULL, var.select = F, ce
 
   # selection of X the predictive data  and  Y the target dataz
   x= data[,-ncol(data)]
-  Y= var.cible
+  Y= formula
   # recode in dummy values the target data
   y = get_dummies(Y)
 

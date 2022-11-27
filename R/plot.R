@@ -41,3 +41,9 @@ plot.plsda <- function(x, ...) {
 
   }
 }
+
+#Carte des individus dans « les » espaces factoriels
+#• Carte des variables
+#• Importance des explicatives, leur relation avec les modalités de la variable cible
+#• Courbes mettant en relation le nombre de composants à sélectionner et un critère
+#quelconque d’évaluation de la qualité de la modélisation (éventuellement calculé avec une procédure de rééchantillonnage)

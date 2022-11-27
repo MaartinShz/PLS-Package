@@ -16,7 +16,7 @@ GridSearchCV = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
       }
     }
 
-    if(merthod == "kFold"){
+    if(method == "kFold"){
       Size = n/cv
       for(i in 1:cv){
         ind = rep(T,n)

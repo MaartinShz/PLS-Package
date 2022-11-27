@@ -31,7 +31,7 @@ plsda = function(ncomp=2, normalize = F, multi_class = 'auto'){
 
 
 }
-
+#print() fournit au moins une fonction de classement permettant d’attribuer les classes aux individus
 #surcharge de la fonction print
 print.plsda = function(objet){
   cat("type : ", class(objet), "\n")
@@ -43,4 +43,5 @@ summary.plsda = function(objet){
   cat("type : ", class(objet), "\n")
 
 }
+
 

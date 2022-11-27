@@ -12,8 +12,8 @@
 #' type "posterior" or "class" return format of the method
 #'
 #' @return
-#' type= posterior
-#' type= class
+#' type= posterior #probabilité d’appartenance aux classes)
+#' type= class #classe prédite
 #'
 #'
 #' @examples
