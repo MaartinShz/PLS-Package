@@ -17,7 +17,7 @@
 #'
 #'
 #' @examples
-#'#obj = plsda()
+#'obj = plsda()
 #'obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
 #'newdata= iris[,-ncol(iris)]
 #'plsda_predict(obj,newdata)
@@ -33,6 +33,9 @@ plsda_predict<-function(object, newdata, type="posterior"){
   }
   if (!is.data.frame(newdata)){ #check if data is a dataframe
     stop("data must be a dataframe")
+  }
+  if (ncol(newdata) != ncol(object$x)){ #check if data is a dataframe
+    stop("data test don't match with data train")
   }
 
   x = scale(newdata)
@@ -54,6 +57,9 @@ plsda_predict<-function(object, newdata, type="posterior"){
 }
 
 
-
+obj = plsda()
+obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
+newdata= iris[,-ncol(iris)]
+plsda_predict(obj,newdata)
 
 
