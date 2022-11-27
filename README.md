@@ -28,4 +28,5 @@ This repository has an r-shiny application allowing to use the package in a grap
 You just need to have the shiny library on your computer 
 and you should be able to launch the application from your IDE from one of the files in the rshiny repository folder
 Example below: 
+
 ![image](https://user-images.githubusercontent.com/43068347/204147679-80463626-b954-44bf-9f5d-21364aa06ae7.png)
