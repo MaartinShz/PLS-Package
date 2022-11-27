@@ -8,7 +8,7 @@ plsda_fit(obj,data$Species, data, ncomp=2)
 }
 \arguments{
 \item{ObjectPLSDA}{PLDA Object
-var.cible vector of the target data of the train dataset
+formula vector of the target data of the train dataset
 data dataframe of the train dataset
 ncomp integer number of composant
 var.select boolean made a variable selection or not

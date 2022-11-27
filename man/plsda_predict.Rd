@@ -4,16 +4,16 @@
 \alias{plsda_predict}
 \title{plsda_predict}
 \usage{
-plsda_predict(obj,xtest)
+plsda_predict(obj,newdata)
 }
 \arguments{
 \item{object}{PLDA Object
-Xtest dataframe of the test dataset with no target variable
+newdata dataframe of the test dataset with no target variable
 type "posterior" or "class" return format of the method}
 }
 \value{
-type= posterior
-type= class
+type= posterior to have probability of class membership by observation
+type= class to have the class predicted by observation
 }
 \description{
 Method to use The Partial least squares regression Prediction
@@ -22,8 +22,8 @@ It make a prediction on test data
 \examples{
 #obj = plsda()
 obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
-xtest= iris[,-ncol(iris)]
-plsda_predict(obj,xtest)
+newdata= iris[,-ncol(iris)]
+plsda_predict(obj,newdata)
 
 
 }
