@@ -99,18 +99,6 @@ server <- function(input, output) {
   })
   
   output$MyPlot <- renderPlot({
-    # for a histogram: remove the second variable (it has to be numeric as well):
-    # x    <- data()[, c(input$xcol, input$ycol)]
-    # bins <- nrow(data())
-    # hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
-    # Correct way:
-    # x    <- data()[, input$xcol]
-    # bins <- nrow(data())
-    # hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
-    
-    # I Since you have two inputs I decided to make a scatterplot
     x <- data()[, c(input$xcol, input$ycol)]
     plot(x)
     
@@ -132,7 +120,7 @@ server <- function(input, output) {
 } 
 
 
-# Create Shiny object
+# ca ouvre l'app shiny
 shinyApp(ui = ui, server = server)
 
 #y
