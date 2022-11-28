@@ -33,7 +33,7 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
   }
 
 
-  if(is.null(ncomp) || !is.numeric(ncomp)){
+  if(is.null(ncomp) || !is.numeric(ncomp) || ncomp>min(nrow(data), ncol(data))){
     # if ncomp is null or in a wrong format we take the Range of the matrix
     ncomp = min(nrow(data), ncol(data))
   }
@@ -121,6 +121,7 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
 
   obj = list("x"=x,
             "y"=y,
+            "data"=data,
             "y_loadings"=Yloadings,
             "y_scores"=Yscores,
             "x_weights"=Xweights,
@@ -135,6 +136,11 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
 
 }
 
-#data = iris
-#obj = plsda()
-#print(plsda_fit(obj,data$Species, data, ncomp=2))
+data = iris
+obj = plsda()
+obj = plsda_fit(obj,data$Species, data, ncomp=2)
+print(obj)
+
+print(row.names(obj$x_loadings))
+
+

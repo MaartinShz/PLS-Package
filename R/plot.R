@@ -12,7 +12,7 @@
 #'
 #'
 #' @examples
-#' y = get_dummies(iris$Species)
+#'
 
 plot.plsda <- function(x, ...) {
 
@@ -42,8 +42,27 @@ plot.plsda <- function(x, ...) {
   }
 }
 
+
+
+plot_mapVariable <- function(object){
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+  ggplot(obj$x_loadings, aes(row.names(obj$x_loadings), obj$x_loadings$X1)) +
+    geom_boxplot() + coord_flip()
+
+
+    # Carte des variables
+
+}
+
+
+#ggplot(obj$x_loadings) +
+#  geom_hex(aes(x = obj$x_loadings$X1, y = obj$x_loadings$X2), bins = 20)
+
+
 #Carte des individus dans « les » espaces factoriels
-#• Carte des variables
+# Carte des variables
 #• Importance des explicatives, leur relation avec les modalités de la variable cible
 #• Courbes mettant en relation le nombre de composants à sélectionner et un critère
 #quelconque d’évaluation de la qualité de la modélisation (éventuellement calculé avec une procédure de rééchantillonnage)
