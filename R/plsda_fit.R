@@ -85,12 +85,11 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
     w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
     w = w / sqrt(sum(w^2)) # normalization de w
 
-    w_new=0
+    temp=0
 
-    while(abs(mean(w)-mean(w_new)) > 1e-10){
+    while(abs(mean(w)-mean(temp)) > 1e-10){
 
-      w_new=w
-
+      temp=w
       t = x %*% w / (sum(w^2)) #t(x) #matrice des scores de X
       q = (t(y) %*% t) / (sum(t^2))  #matrice des composantes de Y # loadings
       u = (y %*% q) / (sum(q^2)) #t(y) #matrice des scores de Y
