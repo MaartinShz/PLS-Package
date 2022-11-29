@@ -1,4 +1,9 @@
-GridSearchCV = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
+GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
+
+    if (class(ObjectPLSDA)!="PLSDA") {
+      stop("Object's class is not PLSDA")
+    }
+
 
     n = nrow(data)
     shuffled_data = data[sample(1:n),]
@@ -31,22 +36,21 @@ GridSearchCV = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
     models = list()
     for(k in cv){
       #
-      Xnames = attributes(terms(formula, data=train))$term.labels
-      Yname = toString(formula[[2]])
-
+      X = model.matrix(formula,data=data)[,-1]
+      Y = model.response(model.frame(formula, data = data))
+      Y = as.factor(as.vector(Y))
 
       #Récupération des folds
-      ind = fold[k]
-      train = shuffled_data[ind,]
-      test = shuffled_data[!ind,]
+      ind = fold[[k]]
+      train = shuffled_data[!ind,]
+      test = shuffled_data[ind,]
 
-      Xtest = data.frame(test[,Xnames])
-      Ytest = test[,Yname]
-
+      Xtest = data.frame(test[,colnames(X)])
+      Ytest = test[,colnames(Y)]
 
       #Apprentissage du train et predict sur le test
-      plsTrain = plsda_fit(formula, train)
-      predTest = plsda_predict(plsTrain, test)
+      plsTrain = plsda_fit(ObjectPLSDA, formula, train)
+      predTest = plsda_predict(plsTrain, Xtest)
 
       cm = table(Ytest, predTest)
 
@@ -70,3 +74,5 @@ GridSearchCV = function(formula, data, ncomp, cv = 5, method = 'rsplit'){
 }
 
 data = iris
+
+GridSearchCV(ObjectPLSDA = obj,formula = Species~.,data = data)
