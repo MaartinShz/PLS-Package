@@ -18,7 +18,7 @@
 #' print(obj)
 #' summary(obj)
 #'
-plsda = function(ncomp=2, normalize = F, multi_class = 'auto'){
+plsda = function(formula=NULL, data=NULL, ncomp=NULL, var.select = F){
   #vérification des hyperparamètres
   #if(){}
 

@@ -1,5 +1,7 @@
 # 🖐 PLS-Package 🖐
-Is a package proposing a PLS regression method for ranking purposes
+Is a package proposing a PLS regression method for ranking purposes.
+
+PLS regression is used to predict a set of dependent variables from a very large set of explanatory variables that may be very highly correlated
 
 ## Setup
 
