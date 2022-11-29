@@ -117,11 +117,16 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
 
   }
 
-  print(solve(t(Xloadings)%*%as.matrix(Xweights)))
+
+  testXrot <- tryCatch({
+    solve(t(Xloadings)%*%as.matrix(Xweights))
+  },
+  error = function(err) {
+    stop("reduce number of composant, ncomp")
+  })
 
 
-
-  x_rotation = as.matrix(Xweights) %*%  solve(t(Xloadings)%*%as.matrix(Xweights))
+  x_rotation = as.matrix(Xweights) %*%  testXrot
   coeff = x_rotation%*%t(Yloadings)
   ecart = sapply(data.frame(y),sd)
   coeff = coeff*ecart
@@ -148,5 +153,6 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
 data = iris
 obj = plsda()
 plsda_fit(obj,Species~., data)
-obj = plsda_fit(obj,data$Species, data, ncomp=2)
 print(obj)
+
+
