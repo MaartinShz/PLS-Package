@@ -50,6 +50,8 @@ plsda_predict<-function(object, newdata, type="posterior"){
   }
   else{
     pred = apply(Ysoftmax,1,which.max)
+    print(Ysoftmax)
+    print(pred)
     return(as.factor(levels(object$y)[pred]))
   }
 
@@ -57,9 +59,9 @@ plsda_predict<-function(object, newdata, type="posterior"){
 }
 
 
-#obj = plsda()
-#obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
-#newdata= iris[,-ncol(iris)]
-#plsda_predict(obj,newdata)
+obj = plsda()
+obj = plsda_fit(obj,Species~.,iris,ncomp=2)
+newdata= iris[,-ncol(iris)]
+plsda_predict(obj,newdata,type = "posterior")
 
 

@@ -43,30 +43,6 @@ plot.plsda <- function(x, ...) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 variableMap.plsda <- function(x, ...) {
 
 }
@@ -86,18 +62,6 @@ plot_mapVariable <- function(object){
 
 #ggplot(obj$x_loadings) +
 #  geom_hex(aes(x = obj$x_loadings$X1, y = obj$x_loadings$X2), bins = 20)
-
-
-
-
-
-
-
-
-
-
-
-
 
 #Carte des individus dans « les » espaces factoriels
 # Carte des variables
