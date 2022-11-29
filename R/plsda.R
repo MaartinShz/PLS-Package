@@ -44,4 +44,6 @@ summary.plsda = function(objet){
 
 }
 
+#path = paste(getwd(),"/PredByPLS.csv",sep = "")
+#write.csv(iris,path, row.names = TRUE)
 

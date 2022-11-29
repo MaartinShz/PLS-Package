@@ -42,12 +42,34 @@ plot.plsda <- function(x, ...) {
   }
 }
 
-<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 variableMap.plsda <- function(x, ...) {
 
 }
-=======
-
 
 plot_mapVariable <- function(object){
   if (class(object)!="PLSDA") {
@@ -66,7 +88,17 @@ plot_mapVariable <- function(object){
 #  geom_hex(aes(x = obj$x_loadings$X1, y = obj$x_loadings$X2), bins = 20)
 
 
->>>>>>> 7af1d9a6c178ab56c891792a6daf7a3a8902c2cf
+
+
+
+
+
+
+
+
+
+
+
 #Carte des individus dans « les » espaces factoriels
 # Carte des variables
 #• Importance des explicatives, leur relation avec les modalités de la variable cible
