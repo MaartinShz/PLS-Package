@@ -40,14 +40,14 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
   ###########################
 
   # selection of X the predictive data  and  Y the target dataz
-  x= data[,-ncol(data)]
-  Y= formula
+  X = model.matrix(formula,data=data)[,-1] #pour enlever intercept
+  Y = model.response(model.frame(formula,data=data))
   # recode in dummy values the target data
   y = get_dummies(Y)
 
   if(centre){
     # data normalization
-    x = scale(x)
+    x = scale(X)
     y = scale(y)
   }
 
@@ -86,15 +86,21 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
     w = w / sqrt(sum(w^2)) # normalization de w
 
     temp=0
+    iteration = 0
 
     while(abs(mean(w)-mean(temp)) > 1e-10){
-
+      iteration = iteration + 1
       temp=w
       t = x %*% w / (sum(w^2)) #t(x) #matrice des scores de X
       q = (t(y) %*% t) / (sum(t^2))  #matrice des composantes de Y # loadings
       u = (y %*% q) / (sum(q^2)) #t(y) #matrice des scores de Y
       w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
       w = w / sqrt(sum(w^2)) # normalization de w
+
+      if (iteration>500) {
+        stop("PLS regression cannot converge")
+      }
+
     }
 
     P = (t(x) %*% as.matrix(t)) / (sum(t^2)) #matrice des composantes de X # loadings
@@ -109,8 +115,9 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
     Xloadings[, k] <- P
     Yloadings[, k] <- q
 
-
   }
+
+
 
   x_rotation = as.matrix(Xweights) %*%  solve(t(Xloadings)%*%as.matrix(Xweights))
   coeff = x_rotation%*%t(Yloadings)
@@ -135,6 +142,6 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
 
 }
 
-#data = iris
-#obj = plsda()
-#print(plsda_fit(obj,data$Species, data, ncomp=2))
+data = iris
+obj = plsda()
+print(plsda_fit(obj,Species~., data, ncomp=2))

@@ -42,6 +42,9 @@ plot.plsda <- function(x, ...) {
   }
 }
 
+variableMap.plsda <- function(x, ...) {
+
+}
 #Carte des individus dans « les » espaces factoriels
 #• Carte des variables
 #• Importance des explicatives, leur relation avec les modalités de la variable cible
