@@ -8,7 +8,7 @@
 #' plsda_fit(obj,data$Species, data, ncomp=2)
 #'
 #' @param
-#' ObjectPLSDA PLDA Object
+#' object PLDA Object
 #' formula vector of the target data of the train dataset
 #' data dataframe of the train dataset
 #' ncomp integer number of composant
@@ -22,9 +22,9 @@
 #'obj = plsda()
 #'plsda_fit(obj,iris$Species, iris, ncomp=2)
 
-plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, centre=T){
+plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T){
 
-  if (class(ObjectPLSDA)!="PLSDA") {
+  if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
 
@@ -156,6 +156,8 @@ data = iris
 obj = plsda()
 obj = plsda_fit(obj,Species~., data,ncomp=2)
 print(obj)
+
+
 
 #library(corrplot)
 #M <-cor(obj$x)

@@ -1,14 +1,14 @@
-#' Titre
+#' Plot
 #'
-#' Description
+#' plot.plsda : plots the variances against the number of the principal component.
 #'
 #' @usage
-#' utilisation
+#' plot.scree(obj)
 #'
 #' @param
-#' argument 1
+#' obj  plsda object
 #' @return
-#' Value return
+#' plot a scree plot
 #'
 #'
 #' @examples
@@ -50,9 +50,11 @@ variableMap.plsda <- function(x, ...) {
 }
 
 plot_mapVariable <- function(object){
+
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
+
   ggplot(obj$x_loadings, aes(row.names(obj$x_loadings), obj$x_loadings$X1)) +
     geom_boxplot() + coord_flip()
 
@@ -78,9 +80,6 @@ plot.scree <- function(object){
                 xlab="Number of Components",
                 main =paste(class(object)," Scree plot "))
 }
-
-
-
 
 
 #ggplot(obj$x_loadings) +
