@@ -31,14 +31,31 @@ plsda = function(formula=NULL, data=NULL, ncomp=NULL, var.select = F){
 
 
 }
+
 #print() fournit au moins une fonction de classement permettant d’attribuer les classes aux individus
 #surcharge de la fonction print
 print.plsda = function(object){
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
-  cat("type : ", class(object), "\n")
 
+
+  if(is.null(object$intercept)){
+    cat("type : ", class(object), "\n")
+  }else {
+    print("x : ", object$x, "\n")
+    print("y : ", object$y, "\n")
+    print("data : ", object$data, "\n")
+    print("ncomp : ", object$ncomp, "\n")
+    print("y_loading : ", object$y_loading, "\n")
+    print("y-scores : ", object$y_scores, "\n")
+    print("x_weights : ", object$x_weights, "\n")
+    print("x_loadings : ", object$x_loadings, "\n")
+    print("x_scores : ", object$x_scores, "\n")
+    print("eigen : ", object$eigen, "\n")
+    print("coefficients : ", object$coefficients, "\n")
+    print("intercept : ", object$intercept, "\n")
+  }
 }
 
 #surcharge de la fonction summary
@@ -51,11 +68,11 @@ summary.plsda = function(object){
   if(is.null(object$intercept)){
     cat("type : ", class(object), "\n")
   }else {
-    cat("type : ", object$data, "\n")
-    cat("type : ", object$x_weights, "\n")
-    cat("type : ", object$x_scores, "\n")
-    cat("type : ", object$ncomp, "\n")
-    cat("type : ", object$corrX, "\n")
+    print("data : ", object$data, "\n")
+    print("x_weights : ", object$x_weights, "\n")
+    print("x_scores : ", object$x_scores, "\n")
+    print("ncomp : ", object$ncomp, "\n")
+    print("corrX : ", object$corrX, "\n")
 
   }
 
