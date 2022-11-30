@@ -141,6 +141,8 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
             "x_weights"=Xweights,
             "x_loadings"=Xloadings,
             "x_scores"=Xscores,
+            "corrX"=cor(x),
+            "eigen"=eigen(cor(x)),
             "ncomp"=ncomp,
             "coefficients"= coeff,
             "intercept"=intercept)
@@ -152,7 +154,11 @@ plsda_fit<-function(ObjectPLSDA, formula, data, ncomp=NULL, var.select = F, cent
 
 data = iris
 obj = plsda()
-plsda_fit(obj,Species~., data)
+obj = plsda_fit(obj,Species~., data,ncomp=2)
 print(obj)
+
+#library(corrplot)
+#M <-cor(obj$x)
+#corrplot(M, order="hclust")
 
 

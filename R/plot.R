@@ -12,7 +12,9 @@
 #'
 #'
 #' @examples
+#'plot.scree(obj)
 #'
+
 
 plot.plsda <- function(x, ...) {
 
@@ -58,6 +60,27 @@ plot_mapVariable <- function(object){
     # Carte des variables
 
 }
+
+plot.scree <- function(object){
+
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+  if (is.null(object$eigen) || is.null(object$eigen$values)){
+    stop("Object PLSDA is not complete")
+  }
+  scree <- plot(object$eigen$values,
+                type="o",
+                col = "red",
+                lwd = 3,
+                pch = 4,
+                ylab="Eigen values",
+                xlab="Number of Components",
+                main =paste(class(object)," Scree plot "))
+}
+
+
+
 
 
 #ggplot(obj$x_loadings) +
