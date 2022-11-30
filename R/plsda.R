@@ -33,14 +33,32 @@ plsda = function(formula=NULL, data=NULL, ncomp=NULL, var.select = F){
 }
 #print() fournit au moins une fonction de classement permettant d’attribuer les classes aux individus
 #surcharge de la fonction print
-print.plsda = function(objet){
-  cat("type : ", class(objet), "\n")
+print.plsda = function(object){
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+  cat("type : ", class(object), "\n")
 
 }
 
 #surcharge de la fonction summary
-summary.plsda = function(objet){
-  cat("type : ", class(objet), "\n")
+summary.plsda = function(object){
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+
+
+  if(is.null(object$intercept)){
+    cat("type : ", class(object), "\n")
+  }else {
+    cat("type : ", object$data, "\n")
+    cat("type : ", object$x_weights, "\n")
+    cat("type : ", object$x_scores, "\n")
+    cat("type : ", object$ncomp, "\n")
+    cat("type : ", object$corrX, "\n")
+
+  }
+
 
 }
 

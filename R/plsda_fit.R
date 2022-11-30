@@ -155,8 +155,8 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T)
 data = iris
 obj = plsda()
 obj = plsda_fit(obj,Species~., data,ncomp=2)
-print(obj)
 
+print(obj)
 
 
 #library(corrplot)
