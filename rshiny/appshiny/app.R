@@ -22,7 +22,7 @@ ui <- fluidPage(
 
                             ),
                             mainPanel(dataTableOutput("contents"))
-                                    #tableOutput("contents")
+                            #tableOutput("contents")
                         )
 
 
@@ -108,7 +108,7 @@ server <- function(input, output) {
                     choices = NamesX,
                     multiple=TRUE)})
     output$yvar=renderUI({
-        NamesY=colnames(data())33
+        NamesY=colnames(data())
         selectInput(inputId = "vary",
                     label = "Select your Y variables",
                     choices = NamesY,
@@ -167,7 +167,5 @@ server <- function(input, output) {
 
 
 }
-
-
 # Run the application
 shinyApp(ui = ui, server = server)
