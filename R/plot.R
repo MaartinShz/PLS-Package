@@ -102,9 +102,6 @@ plot_mapVariable <- function(object){
     geom_boxplot() + coord_flip()
 }
 
-#ggplot(obj$x_loadings) +
-#  geom_hex(aes(x = obj$x_loadings$X1, y = obj$x_loadings$X2), bins = 20)
-
 #Carte des individus dans « les » espaces factoriels
 #• Courbes mettant en relation le nombre de composants à sélectionner et un critère
 #quelconque d’évaluation de la qualité de la modélisation (éventuellement calculé avec une procédure de rééchantillonnage)
