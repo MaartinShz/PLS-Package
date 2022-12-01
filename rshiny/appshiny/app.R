@@ -108,7 +108,7 @@ server <- function(input, output) {
                     choices = NamesX,
                     multiple=TRUE)})
     output$yvar=renderUI({
-        NamesY=colnames(data())
+        NamesY=colnames(data())33
         selectInput(inputId = "vary",
                     label = "Select your Y variables",
                     choices = NamesY,
@@ -118,6 +118,11 @@ server <- function(input, output) {
 
     fit = reactive({
         if(as.logical(input$split)){
+
+
+
+
+
 
             if(input$datasplit == "test"){
                 dataSplit = split_sample(data=data(), train_perc=(1-(input$pourcentagesplit*0.01)))
