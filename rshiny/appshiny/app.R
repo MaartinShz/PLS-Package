@@ -119,10 +119,8 @@ server <- function(input, output) {
     fit = reactive({
         if(as.logical(input$split)){
 
-
-
-
-
+            #dataSelectionUser
+            #data
 
             if(input$datasplit == "test"){
                 dataSplit = split_sample(data=data(), train_perc=(1-(input$pourcentagesplit*0.01)))
@@ -132,14 +130,16 @@ server <- function(input, output) {
 
 
         }
-        #print(dataSplit$train)
+        #xtrain = dataSplit$train
+        #ytrain = dataSplit$test
 
 
+        print(class(input$varx))
         print(input$varx)
+        print(length(input$varx))
+        print(class(input$vary))
         print(input$vary)
 
-        #ytrain =
-        #xtrain =
 
 
 
