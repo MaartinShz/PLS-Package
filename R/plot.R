@@ -13,6 +13,7 @@
 #'
 #' @examples
 #'plot.scree(obj)
+#'plot.varCorr(obj)
 #'
 
 
@@ -49,20 +50,6 @@ variableMap.plsda <- function(x, ...) {
 
 }
 
-plot_mapVariable <- function(object){
-
-  if (class(object)!="PLSDA") {
-    stop("Object's class is not PLSDA")
-  }
-
-  ggplot(obj$x_loadings, aes(row.names(obj$x_loadings), obj$x_loadings$X1)) +
-    geom_boxplot() + coord_flip()
-
-
-    # Carte des variables
-
-}
-
 plot.scree <- function(object){
 
   if (class(object)!="PLSDA") {
@@ -81,12 +68,43 @@ plot.scree <- function(object){
                 main =paste(class(object)," Scree plot "))
 }
 
+plot.varCorr <- function(object){
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+
+  reshapeCorr = data.frame(matrix(rep(0), nrow = length(obj$corrX), ncol=3, ))
+  i=0
+  for (k in 1:ncol(obj$corrX))
+  {
+    for ( l in 1:nrow(obj$corrX))
+    {
+      i=i+1
+      reshapeCorr[i,3]=obj$corrX[l,k]
+      reshapeCorr[i,1]=rownames(obj$corrX)[l]
+      reshapeCorr[i,2]=colnames(obj$corrX)[k]
+    }
+  }
+
+  ggplot(data = reshapeCorr, aes(x=X1, y=X2, fill=X3)) +
+    geom_tile()
+
+}
+
+
+plot_mapVariable <- function(object){
+
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
+  }
+
+  ggplot(obj$x_loadings, aes(row.names(obj$x_loadings), obj$x_loadings$X1)) +
+    geom_boxplot() + coord_flip()
+}
 
 #ggplot(obj$x_loadings) +
 #  geom_hex(aes(x = obj$x_loadings$X1, y = obj$x_loadings$X2), bins = 20)
 
 #Carte des individus dans « les » espaces factoriels
-# Carte des variables
-#• Importance des explicatives, leur relation avec les modalités de la variable cible
 #• Courbes mettant en relation le nombre de composants à sélectionner et un critère
 #quelconque d’évaluation de la qualité de la modélisation (éventuellement calculé avec une procédure de rééchantillonnage)

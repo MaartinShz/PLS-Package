@@ -62,6 +62,6 @@ plsda_predict<-function(object, newdata, type="posterior"){
 #obj = plsda()
 #obj = plsda_fit(obj,Species~.,iris,ncomp=2)
 #newdata= iris[,-ncol(iris)]
-#plsda_predict(obj,newdata,type = "posterior")
+ #plsda_predict(obj,newdata,type = "posterior")
 
 

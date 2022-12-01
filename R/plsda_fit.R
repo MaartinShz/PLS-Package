@@ -152,15 +152,9 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T)
 
 }
 
-data = iris
-obj = plsda()
-obj = plsda_fit(obj,Species~., data,ncomp=2)
-
-print(obj)
-
-
-#library(corrplot)
-#M <-cor(obj$x)
-#corrplot(M, order="hclust")
-
+#data = iris
+#obj = plsda()
+#obj = plsda_fit(obj,Species~., iris,ncomp=2)
+#print(obj)
+#print(plsda_fit(obj, Species ~ Sepal.Length + Petal.Length, data = iris, ncomp = 2))
 
