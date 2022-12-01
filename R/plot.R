@@ -68,6 +68,7 @@ plot.scree <- function(object){
                 main =paste(class(object)," Scree plot "))
 }
 
+
 plot.varCorr <- function(object){
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
