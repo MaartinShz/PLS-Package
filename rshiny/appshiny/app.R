@@ -8,6 +8,7 @@ ui <- fluidPage(
 
                         sidebarLayout(
                             sidebarPanel(
+                                strong(h1("Import your data : ")),
                                 fileInput("file1", "Choose your File",
                                           accept = c(
                                               "text/csv",
@@ -20,21 +21,15 @@ ui <- fluidPage(
                                 tags$hr(),
                                 radioButtons("separator","Separator: ",choices = c(";",",",":"), selected=",",inline=TRUE),
                                 numericInput("sheetnumber", "Sheetnumber:", 1, min = 1, max = 255),
-
                             ),
                             mainPanel(dataTableOutput("contents"))
                             #tableOutput("contents")
                         )
-
-
-
-
-
-
                ),
                tabPanel("Fit And Predict",
                         sidebarLayout(
                             sidebarPanel(
+                                strong(h1("Fit : ")),
 
                                 checkboxInput("split", "Split Data", TRUE),
                                 radioButtons("datasplit","Data: ",choices = c("Test"="test", "Train"="train"), selected="test",inline=TRUE),
@@ -55,6 +50,7 @@ ui <- fluidPage(
 
                                 actionButton("btnFit", "Fit model"),
                                 tags$hr(),
+                                strong(h1("Predict : ")),
 
                                 tags$hr(),
                                 actionButton("btnPredict", "Predict model"),
@@ -66,15 +62,20 @@ ui <- fluidPage(
                             ),
                             mainPanel(dataTableOutput("fit"), dataTableOutput("predict"))
                         )
-
-
-
-
-
-
-
                ),
-               tabPanel("Plots")
+               tabPanel("Plots"),
+               tabPanel("Export",
+                        sidebarLayout(
+                            sidebarPanel(
+                                actionButton("btnExport", "Export Prediction"),
+
+                            ),
+                            mainPanel(verbatimTextOutput("placeholder", placeholder = TRUE), tags$hr(),
+                                      dataTableOutput("export"))
+                        )
+
+
+                        )
     )
 
 )
@@ -197,8 +198,19 @@ server <- function(input, output) {
       }
 
     })
-
     output$predict=renderDataTable({predict()})
+
+    export = eventReactive(input$btnExport,{
+
+        output$placeholder <- renderText({ paste("Prediction Path : \n", getwd()) })
+        if(!is.null(predict())){
+            export.plsda(predict())
+            return(predict())
+        }
+
+    })
+    output$export=renderDataTable({export()})
+
 
 }
 # Run the application

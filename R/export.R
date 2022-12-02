@@ -3,7 +3,7 @@
 #' function to export your prediction in a csv file
 #'
 #' @usage
-#' export.plsda(obj,ypred)
+#' export.plsda(ypred)
 #'
 #'
 #' @param
