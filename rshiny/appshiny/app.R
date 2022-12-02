@@ -61,7 +61,7 @@ ui <- fluidPage(
 
                                 radioButtons("typePred","Prediction: ",choices = c("Posterior"="posterior", "Class"="class"), selected="posterior",inline=TRUE),
                                 fileInput("fileTest", "Choose your File Test, if you don't split", accept = c("text/csv","text/comma-separated-values,text/plain", ".csv")),
-
+                                radioButtons("typepred","Type: ",choices = c("Xlsx"="xlsx","Csv"="csv"), selected="csv",inline=TRUE),
                             ),
                             mainPanel(dataTableOutput("fit"), dataTableOutput("predict"))
                         )
@@ -91,19 +91,15 @@ server <- function(input, output) {
         }
         else{
             if(input$type == "xlsx"){
-
                 read_excel(path=inFile$datapath, sheet=input$sheetnumber, col_names=as.logical(input$header))
 
             }else if (input$type == "csv"){
-
                 read.csv(inFile$datapath, header = input$header, sep = input$separator)
 
             } else {
                 stop("file must be csv or xlsx")
             }
         }
-
-
     })
 
 
@@ -166,36 +162,39 @@ server <- function(input, output) {
 
       if(!is.null(fit()))
       {
+
         obj = fit()$obj
-        newdata =fit()$newdata
-        target = fit()$target
+
+        inFilepred <- input$fileTest
+
+        if(is.null(inFilepred))
+        {
+          newdata =fit()$newdata
+          target = fit()$target
+
+
+        }else{
+          if(input$typepred == "xlsx"){
+            newdata = read_excel(path=inFilepred$datapath)
+          }else if (input$typepred == "csv"){
+            newdata = read.csv(inFilepred$datapath)
+          }
+          target = fit()$vary
+        }
+
 
         newdataX = newdata[,setdiff(colnames(newdata), target)]
         newdataY = newdata[,target]
 
+
+
         pred = as.data.frame(plsda_predict(obj,newdataX, input$typePred))
-        print(pred)
-
-
+        return(pred)
       }
-
 
     })
 
     output$predict=renderDataTable({predict()})
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 # Run the application
