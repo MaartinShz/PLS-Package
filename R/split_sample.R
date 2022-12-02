@@ -4,7 +4,7 @@
 
 split_sample = function(data, train_perc = 0.7){
 
-  #Contrôle de saisie
+  #check input
   if (train_perc < 0 | train_perc > 1){
     stop("L'échantillon de test est sous forme de pourcentage, veuillez entrer un nombre entre 0 et 1")
   }
