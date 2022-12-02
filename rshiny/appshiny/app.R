@@ -45,15 +45,24 @@ ui <- fluidPage(
 
 
 
+
                                 tags$hr(),
-                                numericInput("ncomp", "Number of Composent :", 1, min = 1),
-                                checkboxInput("vip", "Selection Variables", FALSE),
+                                numericInput("ncomp", "Number of Composent :", 2, min = 1),
+                                checkboxInput("vip", "Variables Selection", FALSE),
                                 checkboxInput("center", "Centre-Reduire", TRUE),
                                 tags$hr(),
 
+                                actionButton("btnFit", "Fit model"),
+                                tags$hr(),
+
+                                actionButton("btnPredict", "Predict model"),
+                                tags$hr(),
+
+                                radioButtons("typePred","Prediction: ",choices = c("Posterior"="posterior", "Class"="class"), selected="posterior",inline=TRUE),
+                                fileInput("fileTest", "Choose your File Test, if you don't split", accept = c("text/csv","text/comma-separated-values,text/plain", ".csv")),
 
                             ),
-                            mainPanel(dataTableOutput("fit"))
+                            mainPanel(dataTableOutput("fit"), dataTableOutput("predict"))
                         )
 
 
@@ -110,48 +119,62 @@ server <- function(input, output) {
     output$yvar=renderUI({
         NamesY=colnames(data())
         selectInput(inputId = "vary",
-                    label = "Select your Y variables",
+                    label = "Select your Y variable",
                     choices = NamesY,
                     multiple=FALSE)})
 
 
+    fit = eventReactive(input$btnFit,{
+      if(!is.null(data()))
+      {
 
-    fit = reactive({
+    #fit = reactive({
         if(as.logical(input$split)){
 
-            #dataSelectionUser
-            #data
 
-            if(input$datasplit == "test"){
-                dataSplit = split_sample(data=data(), train_perc=(1-(input$pourcentagesplit*0.01)))
-            }else if (input$dataplit == "train"){
-                dataSplit = split_sample(data=data(), train_perc=(input$pourcentagesplit*0.01))
-            }
+          if(input$datasplit == "test"){
+              dataSplit = split_sample(data=data(), train_perc=(1-(input$pourcentagesplit*0.01)))
+          }
+          else if (input$dataplit == "train"){
+              dataSplit = split_sample(data=data(), train_perc=(input$pourcentagesplit*0.01))
+          }
+          datattrain = dataSplit$train[,c(input$varx,input$vary)]
+          datattest= dataSplit$test[,c(input$varx,input$vary)]
 
 
         }
-        #xtrain = dataSplit$train
-        #ytrain = dataSplit$test
+        if(is.null(input$varx)){
+          datattrain = data()
+          #print(datattrain)
+        }
 
-
-        print(class(input$varx))
-        print(input$varx)
-        print(length(input$varx))
-        print(class(input$vary))
-        print(input$vary)
-
-
-
-
+        #datattrain = as.data.frame(data()[,])
+        formul = as.formula(paste(input$vary,"~",".",sep=""))
 
 
         obj = plsda()
-        #plsda_fit(obj,xxxxxxx, xxdatatrainxxxx, ncomp=input$ncomp, var.select = as.logical(input$vip), centre=as.logical(input$center))
+        obj = plsda_fit(obj,formula=formul, datattrain, ncomp=input$ncomp, var.select = as.logical(input$vip), centre=as.logical(input$center))
+        #print(obj)
+        return(obj)
+      }
+
+    })
+    output$fit=renderDataTable({t(fit()$coefficients)})
+
+
+    predict = eventReactive(input$btnPredict,{
+
+      if(!is.null(fit()))
+      {
+        obj = fit()
+        plsda_predict(obj,newdata)
+
+      }
+
 
     })
 
-
-    output$fit=renderDataTable({fit()})
+    output$predict=renderDataTable({predict()})
 
 
 

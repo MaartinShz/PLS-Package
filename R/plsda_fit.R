@@ -28,7 +28,7 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T)
     stop("Object's class is not PLSDA")
   }
 
-  if (!is.data.frame(data)){ #check if data is a dataframe
+  if (!is.data.frame(data) & !is.matrix(data) & !class(data)=="model.matrix.default"){ #check if data is a dataframe
     stop("data must be a dataframe")
   }
 

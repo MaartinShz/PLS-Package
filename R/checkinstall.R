@@ -7,7 +7,7 @@ checkinstall.plsda <- function() {
 
 checkinstall.shiny.plsda <- function() {
 
-  packages <- c("shiny","readxl")
+  packages <- c("shiny","readxl", "dplyr")
   install.packages(setdiff(packages, rownames(installed.packages())))
 
 }
