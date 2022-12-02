@@ -39,9 +39,6 @@ ui <- fluidPage(
                                 uiOutput("xvar"),
                                 uiOutput("yvar"),
 
-
-
-
                                 tags$hr(),
                                 numericInput("ncomp", "Number of Composent :", 2, min = 1),
                                 checkboxInput("vip", "Variables Selection", FALSE),
@@ -68,10 +65,8 @@ ui <- fluidPage(
                         sidebarLayout(
                             sidebarPanel(
                                 actionButton("btnExport", "Export Prediction"),
-
-                            ),
-                            mainPanel(verbatimTextOutput("placeholder", placeholder = TRUE), tags$hr(),
-                                      dataTableOutput("export"))
+                                ),
+                            mainPanel(verbatimTextOutput("placeholder", placeholder = TRUE), tags$hr(),dataTableOutput("export"))
                         )
 
 

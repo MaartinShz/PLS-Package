@@ -18,7 +18,7 @@
 
 
 
-
+library(ggplot2)
 plot.plsda <- function(x, ...) {
 
 
@@ -104,6 +104,11 @@ plot_mapVariable <- function(object){
   ggplot(obj$x_loadings, aes(row.names(obj$x_loadings), obj$x_loadings$X1)) +
     geom_boxplot() + coord_flip()
 }
+
+#obj = plsda()
+#obj = plsda_fit(obj, Species~., iris,2)
+#plot.varCorr(obj)
+#plot.scree(obj)
 
 #Carte des individus dans « les » espaces factoriels
 #• Courbes mettant en relation le nombre de composants à sélectionner et un critère
