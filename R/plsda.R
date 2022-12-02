@@ -19,27 +19,23 @@
 #' summary(obj)
 #'
 plsda = function(formula=NULL, data=NULL, ncomp=NULL, var.select = F){
-  #vérification des hyperparamètres
+  #check parameters
   #if(){}
 
-  #création de l'instance
+  #création of the pls instance
   instance = list("ncomp"=ncomp)
   class(instance) = "PLSDA"
 
   return(instance)
-
-
-
 }
 
 #print() fournit au moins une fonction de classement permettant d’attribuer les classes aux individus
-#surcharge de la fonction print
+
+#Overload of print function
 print.plsda = function(object){
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
-
-
   if(is.null(object$intercept)){
     cat("type : ", class(object), "\n")
   }else {
@@ -58,13 +54,11 @@ print.plsda = function(object){
   }
 }
 
-#surcharge de la fonction summary
+#Overload of summary function
 summary.plsda = function(object){
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
-
-
   if(is.null(object$intercept)){
     cat("type : ", class(object), "\n")
   }else {
