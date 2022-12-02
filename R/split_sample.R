@@ -9,14 +9,14 @@ split_sample = function(data, train_perc = 0.7){
     stop("L'échantillon de test est sous forme de pourcentage, veuillez entrer un nombre entre 0 et 1")
   }
 
-  #Mélange du jeu de données
+  # mix dataset
   n = round(nrow(data)*train_perc)
   shuffled_data = data[sample(1:nrow(data)),]
 
-  #Création de 2 sous-dataframe de test et d'apprentissage
+  #creation of 2 sub dataset one for train or one for test
   train = head(shuffled_data,n)
   test = tail(shuffled_data,nrow(data)-n)
 
-  #On retourne une liste qui contient les données d'apprentissage ainsi que les données test
+  #return in one list the train dsataset and the test dataset
   return(list('train' = train, 'test' = test))
 }
