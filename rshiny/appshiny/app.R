@@ -56,6 +56,7 @@ ui <- fluidPage(
                                 actionButton("btnFit", "Fit model"),
                                 tags$hr(),
 
+                                tags$hr(),
                                 actionButton("btnPredict", "Predict model"),
                                 tags$hr(),
 
@@ -127,6 +128,9 @@ server <- function(input, output) {
         varx = input$varx
         vary = input$vary
 
+        datattrain = data()
+        datattest = NULL
+
         if(is.null(varx)){
             varx = setdiff(colnames(data()), vary)
         }
@@ -146,12 +150,13 @@ server <- function(input, output) {
         }
         formul = as.formula(paste(vary,"~",".",sep=""))
 
+        if(!is.null(formul) & !is.null(datattrain) & !is.null(input$ncomp)){
+            obj = plsda()
+            obj = plsda_fit(obj,formula=formul, datattrain, ncomp=input$ncomp, var.select = as.logical(input$vip), centre=as.logical(input$center))
+            fitReturn = list("obj" = obj, "newdata" = datattest, "target" = vary)
+            return(fitReturn)
+         }
 
-        obj = plsda()
-        obj = plsda_fit(obj,formula=formul, datattrain, ncomp=input$ncomp, var.select = as.logical(input$vip), centre=as.logical(input$center))
-        #print(obj)
-        fitReturn = list("obj" = obj, "newdata" = datattest, "target" = vary)
-        return(fitReturn)
       }
 
     })
@@ -164,32 +169,31 @@ server <- function(input, output) {
       {
 
         obj = fit()$obj
-
+        print(fit())
+        target = fit()$target
         inFilepred <- input$fileTest
 
         if(is.null(inFilepred))
         {
           newdata =fit()$newdata
-          target = fit()$target
-
-
-        }else{
+        }
+        else{
           if(input$typepred == "xlsx"){
             newdata = read_excel(path=inFilepred$datapath)
           }else if (input$typepred == "csv"){
             newdata = read.csv(inFilepred$datapath)
           }
-          target = fit()$vary
-        }
 
+        }
 
         newdataX = newdata[,setdiff(colnames(newdata), target)]
         newdataY = newdata[,target]
 
-
-
-        pred = as.data.frame(plsda_predict(obj,newdataX, input$typePred))
-        return(pred)
+        if(!is.null(obj) & !is.null(newdataX) & !is.null(input$typePred))
+        {
+            pred = as.data.frame(plsda_predict(obj,newdataX, input$typePred))
+            return(pred)
+        }
       }
 
     })

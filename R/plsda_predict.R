@@ -29,7 +29,7 @@ plsda_predict<-function(obj, newdata, type="posterior"){
   if (class(obj)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
-  if (type != "posterior" & type != "class"){
+  if (type != "posterior" & type != "class" & !class(data)=="model.matrix.default"){
     stop("incorrect type")
   }
   if (!is.data.frame(newdata)){ #check if data is a dataframe
@@ -51,10 +51,6 @@ plsda_predict<-function(obj, newdata, type="posterior"){
   }
   else{
     pred = apply(Ysoftmax,1,which.max)
-    #print(Ysoftmax)
-    #print(colnames(obj$y))
-    #print(pred)
-    #print(colnames(obj$y)[pred])
     return(colnames(obj$y)[pred])
   }
 }
