@@ -1,5 +1,6 @@
 library(shiny)
 library(readxl)
+library(dplyr)
 
 ui <- fluidPage(
     navbarPage("PLS App",
@@ -17,7 +18,7 @@ ui <- fluidPage(
                                 radioButtons("type","Type: ",choices = c("Xlsx"="xlsx","Csv"="csv"), selected="csv",inline=TRUE),
                                 checkboxInput("header", "Header", TRUE),
                                 tags$hr(),
-                                radioButtons("separator","Separator: ",choices = c(";",",",":"), selected=";",inline=TRUE),
+                                radioButtons("separator","Separator: ",choices = c(";",",",":"), selected=",",inline=TRUE),
                                 numericInput("sheetnumber", "Sheetnumber:", 1, min = 1, max = 255),
 
                             ),
@@ -127,10 +128,15 @@ server <- function(input, output) {
     fit = eventReactive(input$btnFit,{
       if(!is.null(data()))
       {
+        varx = input$varx
+        vary = input$vary
+
+        if(is.null(varx)){
+            varx = setdiff(colnames(data()), vary)
+        }
 
     #fit = reactive({
         if(as.logical(input$split)){
-
 
           if(input$datasplit == "test"){
               dataSplit = split_sample(data=data(), train_perc=(1-(input$pourcentagesplit*0.01)))
@@ -138,36 +144,38 @@ server <- function(input, output) {
           else if (input$dataplit == "train"){
               dataSplit = split_sample(data=data(), train_perc=(input$pourcentagesplit*0.01))
           }
-          datattrain = dataSplit$train[,c(input$varx,input$vary)]
-          datattest= dataSplit$test[,c(input$varx,input$vary)]
-
+          datattrain = dataSplit$train[,c(varx,vary)]
+          datattest= dataSplit$test[,c(varx,vary)]
 
         }
-        if(is.null(input$varx)){
-          datattrain = data()
-          #print(datattrain)
-        }
-
-        #datattrain = as.data.frame(data()[,])
-        formul = as.formula(paste(input$vary,"~",".",sep=""))
+        formul = as.formula(paste(vary,"~",".",sep=""))
 
 
         obj = plsda()
         obj = plsda_fit(obj,formula=formul, datattrain, ncomp=input$ncomp, var.select = as.logical(input$vip), centre=as.logical(input$center))
         #print(obj)
-        return(obj)
+        fitReturn = list("obj" = obj, "newdata" = datattest, "target" = vary)
+        return(fitReturn)
       }
 
     })
-    output$fit=renderDataTable({t(fit()$coefficients)})
+    output$fit=renderDataTable({t(fit()$obj$coefficients)})
 
 
     predict = eventReactive(input$btnPredict,{
 
       if(!is.null(fit()))
       {
-        obj = fit()
-        plsda_predict(obj,newdata)
+        obj = fit()$obj
+        newdata =fit()$newdata
+        target = fit()$target
+
+        newdataX = newdata[,setdiff(colnames(newdata), target)]
+        newdataY = newdata[,target]
+
+        pred = as.data.frame(plsda_predict(obj,newdataX, input$typePred))
+        print(pred)
+
 
       }
 
