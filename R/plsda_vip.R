@@ -35,31 +35,31 @@ plsda_vip<-function(Object,formula,threshold=0.8){
   vip = sqrt(r*(ssy*weight)/ssy_tot_exp)
 
   # Taking the most important variable
-  variable_important=rownames(vip)[which(vip[,ncomp]>threshold)]
+  imp_v=rownames(vip)[which(vip[,ncomp]>threshold)]
 
 
   # We take 2 most importants variables if there is only 0 or 1 variable that are superior of the threshold
-  if (length(variable_important)<2){
+  if (length(imp_v)<2){
     vip_sorted = vip[order(-vip[,ncomp]),]
-    variable_important=rownames(vip_sorted)[1:2]
+    imp_v=rownames(vip_sorted)[1:2]
   }
 
 
   # New X with important variables
-  newX = colnames(X[,variable_important])
+  newX = colnames(X[,imp_v])
 
   # New dataset with important variables
-  newdataset=data.frame(X[,variable_important],y)
+  newdataset=data.frame(X[,imp_v],y)
 
   return(list("newX"=newX, "vip"=vip, "newdataset"=newdataset))
 }
 
-Object = obj
-test=plsda_vip(obj)
-obj$x
-test$newX
-test$vip
-test$newdataset
+#Object = obj
+#test=plsda_vip(obj)
+#obj$x
+#test$newX
+#test$vip
+#test$newdataset
 
 #ncomp = 2
 
