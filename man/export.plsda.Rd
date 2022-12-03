@@ -7,11 +7,12 @@
 export.plsda(ypred)
 }
 \arguments{
-\item{obj}{plsda object}
+\item{obj}{plsda object
+ypred prediction made by the plsda_predict function
+path localisation of the file in your local machine. Be careful to use backslash between directory and give a name to your file at the end of the path}
 }
 \value{
-Value return
-ypred prediction made by the plsda_predict function
+prediction in a csv file
 }
 \description{
 function to export your prediction in a csv file
@@ -20,6 +21,8 @@ function to export your prediction in a csv file
 obj = plsda()
 obj = plsda_fit(obj,target~.,data,ncomp=2)
 ypred = plsda_predict(obj, xtest,type = "posterior")
+
 export.plsda(ypred)
+export.plsda(iris,"C:/Users/Maartin/Downloads/NameoftheFilePrediction.csv")
 
 }

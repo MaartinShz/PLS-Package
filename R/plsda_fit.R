@@ -48,8 +48,12 @@
 #'
 #'
 #' @examples
-#'obj = plsda()
-#'plsda_fit(obj,Species~., iris, ncomp=2)
+#' obj = plsda()
+#' plsda_fit(obj,Species~., iris, ncomp=2)
+#'
+#' objpls = plsda(ncomp=2)
+#' plsda_fit(objpls,Species~., iris, objpls$ncomp)
+#'
 
 plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T){ # Fit function for a pls object
 
@@ -80,7 +84,6 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T)
     x = scale(X)
     y = scale(y)
   }
-
 
   ##############################################################################
 
@@ -178,9 +181,13 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T)
 
 #data = iris
 #obj = plsda()
-#obj = plsda_fit(obj,Species~., iris,ncomp=2)
+#obj = plsda_fit(obj,Species~., data=iris,ncomp=2)
 #plot.varCorr(obj)
 
 #print(obj)
 #print(plsda_fit(obj, Species ~ Sepal.Length + Petal.Length, data = iris, ncomp = 2))
+
+#objpls = plsda(ncomp=2)
+#print(objpls)
+#plsda_fit(objpls,Species~., iris, ncomp = objpls$ncomp)
 

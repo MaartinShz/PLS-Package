@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dummies.R
 \name{get_dummies}
 \alias{get_dummies}
-\title{get_dummies()}
+\title{get_dummies}
 \usage{
 get_dummies(y)
 }
@@ -10,11 +10,12 @@ get_dummies(y)
 \item{y}{a vector, factor that will be transformed, often used for your target variable}
 }
 \value{
-return a matrix with all dummy values of the param in entry
+dummies a matrix with all dummy values of the param in entry
 }
 \description{
-This function allows you to convert categorical variables into numerical variables. The different modalities are recorded in new columns that encode the presence of this category with binary values
+This function allows you to convert categorical variables into numerical variables.
+The different modalities are recorded in new columns that encode the presence of this category with binary values
 }
 \examples{
-y = get_dummies(iris$Species)
+ydummies = get_dummies(iris$Species)
 }

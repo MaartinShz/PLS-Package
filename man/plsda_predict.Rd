@@ -12,12 +12,13 @@ newdata dataframe of the test dataset with no target variable
 type "posterior" or "class" return format of the method}
 }
 \value{
-type= posterior to have probability of class membership by observation
-type= class to have the class predicted by observation
+pred dataframe of prediction
+if type= "posterior" to have probability of class membership by observation
+Or
+if type= "class" to have the class predicted by observation
 }
 \description{
-Method to use The Partial least squares regression Prediction
-It make a prediction on test data
+Method to use The Partial least squares regression Prediction model To make a prediction on test data
 }
 \examples{
 obj = plsda()

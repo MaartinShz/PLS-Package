@@ -50,4 +50,8 @@ This function use the NIPALS algorithm for make a prediction and class membershi
 \examples{
 obj = plsda()
 plsda_fit(obj,Species~., iris, ncomp=2)
+
+objpls = plsda(ncomp=2)
+plsda_fit(objpls,Species~., iris, objpls$ncomp)
+
 }

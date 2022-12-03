@@ -8,22 +8,28 @@
 #' obj = plsda()
 #'
 #' @param
+#' ncomp number of composant
 #'
 #' @return
 #' obj plsda object
 #'
-#'
 #' @examples
 #' obj = plsda()
+#'
+#' objpls = plsda(ncomp=2)
+#'
 #'
 #' print(obj)
 #' summary(obj)
 #'
-plsda = function(formula=NULL, data=NULL, ncomp=NULL, var.select = F){
-  #check parameters
-  #if(){}
+plsda = function(ncomp=NULL){
 
-  #création of the pls instance
+  if(!is.numeric(ncomp) & !is.null(ncomp)){
+    stop("Number of composant must be a numeric")
+
+  }
+
+  #PLS Instance Creation
   instance = list("ncomp"=ncomp)
   class(instance) = "PLSDA"
 
