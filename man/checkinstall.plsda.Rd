@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkinstall.R
 \name{checkinstall.plsda}
 \alias{checkinstall.plsda}
-\title{checkinstall.}
+\title{checkinstall}
 \usage{
 checkinstall.plsda()
 }

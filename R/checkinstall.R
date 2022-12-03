@@ -1,4 +1,4 @@
-#' checkinstall.
+#' checkinstall
 #'
 #' @description
 #' functions to check if all packages are installed

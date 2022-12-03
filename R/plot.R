@@ -1,4 +1,8 @@
-#' Plot
+#' plot
+#'
+#'
+#' @name
+#' plot
 #'
 #' @description
 #' plot.plsda : plots the variances against the number of the principal component.
