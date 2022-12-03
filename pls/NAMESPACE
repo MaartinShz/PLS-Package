@@ -1,0 +1,3 @@
+export("checkinstall.plsda", "checkinstall.shiny.plsda", "export.plsda", "get_dummies", "obj", "Object", "objpls", "plot.plsda",
+       "plot.scree", "plot.varCorr", "plsda", "plsda_fit", "plsda_predict", "plsda_vip", "print.plsda", "split_sample",
+       "summary.plsda", "variableMap.plsda")
