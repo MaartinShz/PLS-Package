@@ -166,7 +166,6 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
 
 }
 
-#data = iris
 #obj = plsda()
 #obj = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
 #plot.varCorr(obj)

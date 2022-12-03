@@ -1,7 +1,5 @@
-library(shiny)
-library(readxl)
-library(dplyr)
 
+checkinstall.shiny.plsda()
 # Interface Part - front-end App
 ui <- fluidPage(
     # Menu

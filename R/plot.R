@@ -27,11 +27,9 @@
 #'
 
 
-
-library(ggplot2)
-
 plot.plsda <- function(x, ...) {
 
+  checkinstall.plsda()
 
   quality <- x$Quality
   barplot(quality,
@@ -64,6 +62,8 @@ variableMap.plsda <- function(x, ...) {
 }
 
 plot.scree <- function(object){ # scree plot used to determine the number of factors to retain of a pls object
+
+  checkinstall.plsda()
 
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
