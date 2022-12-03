@@ -1,5 +1,6 @@
 #' PLSDA Class
 #'
+#' @description
 #' Class of the object PLSDA, this class is used to create an object Plsda, to use a Partial least squares regression method.
 #'
 #'
@@ -7,39 +8,41 @@
 #' obj = plsda()
 #'
 #' @param
+#' ncomp number of composant
 #'
 #' @return
 #' obj plsda object
 #'
-#'
 #' @examples
 #' obj = plsda()
+#'
+#' objpls = plsda(ncomp=2)
+#'
 #'
 #' print(obj)
 #' summary(obj)
 #'
-plsda = function(formula=NULL, data=NULL, ncomp=NULL, var.select = F){
-  #vérification des hyperparamètres
-  #if(){}
+plsda = function(ncomp=NULL){
 
-  #création de l'instance
+  if(!is.numeric(ncomp) & !is.null(ncomp)){
+    stop("Number of composant must be a numeric")
+
+  }
+
+  #PLS Instance Creation
   instance = list("ncomp"=ncomp)
   class(instance) = "PLSDA"
 
   return(instance)
-
-
-
 }
 
 #print() fournit au moins une fonction de classement permettant d’attribuer les classes aux individus
-#surcharge de la fonction print
+
+#Overload of print function
 print.plsda = function(object){
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
-
-
   if(is.null(object$intercept)){
     cat("type : ", class(object), "\n")
   }else {
@@ -58,13 +61,11 @@ print.plsda = function(object){
   }
 }
 
-#surcharge de la fonction summary
+#Overload of summary function
 summary.plsda = function(object){
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
-
-
   if(is.null(object$intercept)){
     cat("type : ", class(object), "\n")
   }else {

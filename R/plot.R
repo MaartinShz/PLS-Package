@@ -1,21 +1,33 @@
-#' Plot
+#' plot
 #'
+#'
+#' @name
+#' plot
+#'
+#' @description
 #' plot.plsda : plots the variances against the number of the principal component.
+#' plot.varCorr : show the correlation matrix in a pretty plot
 #'
 #' @usage
 #' plot.scree(obj)
+#' plot.varCorr(obj)
 #'
 #' @param
-#' obj  plsda object
+#' obj  plsda object return by fit function
 #' @return
-#' plot a scree plot
-#'
+#' plot plot to show informtions about data
 #'
 #' @examples
-#'plot.scree(obj)
-#'plot.varCorr(obj)
+#' obj = plsda()
+#' plsda_fit(obj,Species~., iris, ncomp=2)
+#'
+#' plot.scree(obj)
+#' plot.varCorr(obj)
 #'
 
+
+
+library(ggplot2)
 
 plot.plsda <- function(x, ...) {
 
@@ -50,7 +62,7 @@ variableMap.plsda <- function(x, ...) {
 
 }
 
-plot.scree <- function(object){
+plot.scree <- function(object){ # scree plot used to determine the number of factors to retain of a pls object
 
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
@@ -69,12 +81,12 @@ plot.scree <- function(object){
 }
 
 
-plot.varCorr <- function(object){
+plot.varCorr <- function(object){ # plot to show Correlation matrix of explication data
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
   }
 
-  reshapeCorr = data.frame(matrix(rep(0), nrow = length(obj$corrX), ncol=3, ))
+  reshapeCorr = data.frame(matrix(rep(0), nrow = length(obj$corrX), ncol=3, )) # transform the correlation matrix in a dataframe exploitable
   i=0
   for (k in 1:ncol(obj$corrX))
   {
@@ -88,20 +100,14 @@ plot.varCorr <- function(object){
   }
 
   ggplot(data = reshapeCorr, aes(x=X1, y=X2, fill=X3)) +
-    geom_tile()
+    geom_tile()# print the plot
 
 }
 
-
-plot_mapVariable <- function(object){
-
-  if (class(object)!="PLSDA") {
-    stop("Object's class is not PLSDA")
-  }
-
-  ggplot(obj$x_loadings, aes(row.names(obj$x_loadings), obj$x_loadings$X1)) +
-    geom_boxplot() + coord_flip()
-}
+#obj = plsda()
+#obj = plsda_fit(obj, Species~., iris,2)
+#plot.varCorr(obj)
+#plot.scree(obj)
 
 #Carte des individus dans « les » espaces factoriels
 #• Courbes mettant en relation le nombre de composants à sélectionner et un critère

@@ -6,6 +6,9 @@
 \usage{
 obj = plsda()
 }
+\arguments{
+\item{ncomp}{number of composant}
+}
 \value{
 obj plsda object
 }
@@ -14,6 +17,9 @@ Class of the object PLSDA, this class is used to create an object Plsda, to use 
 }
 \examples{
 obj = plsda()
+
+objpls = plsda(ncomp=2)
+
 
 print(obj)
 summary(obj)

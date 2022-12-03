@@ -1,6 +1,8 @@
-#' get_dummies()
+#' get_dummies
 #'
-#' This function allows you to convert categorical variables into numerical variables. The different modalities are recorded in new columns that encode the presence of this category with binary values
+#' @description
+#' This function allows you to convert categorical variables into numerical variables.
+#' The different modalities are recorded in new columns that encode the presence of this category with binary values
 #'
 #' @usage
 #' get_dummies(y)
@@ -8,10 +10,10 @@
 #' @param
 #' y a vector, factor that will be transformed, often used for your target variable
 #' @return
-#' return a matrix with all dummy values of the param in entry
+#' dummies a matrix with all dummy values of the param in entry
 #'
 #' @examples
-#' y = get_dummies(iris$Species)
+#' ydummies = get_dummies(iris$Species)
 
 get_dummies<-function(y){
 

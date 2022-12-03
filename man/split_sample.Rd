@@ -2,10 +2,25 @@
 % Please edit documentation in R/split_sample.R
 \name{split_sample}
 \alias{split_sample}
-\title{Test}
+\title{split_sample}
 \usage{
-split_sample(data, train_perc = 0.7)
+split_sample(data=iris, train_perc=70)
+split_sample(data=iris, train_perc=(100-30))
+}
+\arguments{
+\item{data}{dataframe of data you will split}
+}
+\value{
+obj plsda object
+train_perc value between 0 and 1 to which gives the percentage of the size of the learning dataset
 }
 \description{
-C'est une description
+functions to split a dataset in 2 sub-dataframe.
+one dataset of learning
+one dataset for testing
+}
+\examples{
+split_sample(data=iris, train_perc=0.7)
+split_sample(data=iris, train_perc=(1-0.3))
+
 }
