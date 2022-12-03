@@ -1,6 +1,26 @@
-#' Test
+#' split_sample
 #'
-#' C'est une description
+#' @description
+#' functions to split a dataset in 2 sub-dataframe.
+#' one dataset of learning
+#' one dataset for testing
+#'
+#'
+#' @usage
+#' split_sample(data=iris, train_perc=70)
+#' split_sample(data=iris, train_perc=(100-30))
+#'
+#' @param
+#' data dataframe of data you will split
+#'
+#' @return
+#' obj plsda object
+#' train_perc value between 0 and 1 to which gives the percentage of the size of the learning dataset
+#'
+#' @examples
+#' split_sample(data=iris, train_perc=0.7)
+#' split_sample(data=iris, train_perc=(1-0.3))
+#'
 
 split_sample = function(data, train_perc = 0.7){
 
