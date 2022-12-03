@@ -1,5 +1,6 @@
 #' plsda_predict
 #'
+#' @description
 #' Method to use The Partial least squares regression Prediction
 #' It make a prediction on test data
 #'

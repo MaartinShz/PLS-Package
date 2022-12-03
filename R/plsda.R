@@ -1,5 +1,6 @@
 #' PLSDA Class
 #'
+#' @description
 #' Class of the object PLSDA, this class is used to create an object Plsda, to use a Partial least squares regression method.
 #'
 #'

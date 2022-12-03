@@ -1,5 +1,6 @@
 #' get_dummies()
 #'
+#' @description
 #' This function allows you to convert categorical variables into numerical variables. The different modalities are recorded in new columns that encode the presence of this category with binary values
 #'
 #' @usage

@@ -1,5 +1,6 @@
 #' Plot
 #'
+#' @description
 #' plot.plsda : plots the variances against the number of the principal component.
 #'
 #' @usage
@@ -19,6 +20,7 @@
 
 
 library(ggplot2)
+
 plot.plsda <- function(x, ...) {
 
 
