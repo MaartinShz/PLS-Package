@@ -2,19 +2,23 @@
 #'
 #' @description
 #' plot.plsda : plots the variances against the number of the principal component.
+#' plot.varCorr : show the correlation matrix in a pretty plot
 #'
 #' @usage
 #' plot.scree(obj)
+#' plot.varCorr(obj)
 #'
 #' @param
-#' obj  plsda object
+#' obj  plsda object return by fit function
 #' @return
-#' plot a scree plot
-#'
+#' plot plot to show informtions about data
 #'
 #' @examples
-#'plot.scree(obj)
-#'plot.varCorr(obj)
+#' obj = plsda()
+#' plsda_fit(obj,Species~., iris, ncomp=2)
+#'
+#' plot.scree(obj)
+#' plot.varCorr(obj)
 #'
 
 
