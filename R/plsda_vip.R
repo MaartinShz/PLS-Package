@@ -55,25 +55,6 @@ plsda_vip<-function(Object,formula,threshold=0.8){
   return(list("newX"=newX, "vip"=vip, "newdataset"=newdataset))
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Object = obj
 #test=plsda_vip(obj)
 #obj$x
