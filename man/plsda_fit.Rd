@@ -15,14 +15,37 @@ var.select boolean for use the vip function
 centre boolean if the data need to be normalize}
 }
 \value{
-obj plsda object
-\code{X} the original dataset containing the predictors.
+obj plsda object with attributes below
+\cr
+\code{obj$x} the explicative train dataset normalize if center is true
+\cr
+\code{obj$y} the target train dataset normalize if center is true
+\cr
+\code{obj$y_loadings} loadings dataframe of target variable
+\cr
+\code{obj$y_scores} scores dataframe of target variable
+\cr
+\code{obj$x_weights} weights dataframe of explicatives variables
+\cr
+\code{obj$x_loadings} loadings dataframe of explicatives variables
+\cr
+\code{obj$x_scores} scores dataframe of explicatives variables
+\cr
+\code{obj$corrX} correlation between each explicatives variables
+\cr
+\code{obj$eigen} eigen values of explicatves variables
+\cr
+\code{obj$ncomp} number of composant
+\cr
+\code{obj$coefficients} coefficients use for prediction
+\cr
+\code{obj$intercept} Intercept coefficient
+\cr
 }
 \description{
 Method to use The Partial least squares regression
 It initialize the method and train the model with the pls regression
-to make a prediction on a dataset
-This function use the NIPALS algorithm for make a prediction on binary or multinominal target
+This function use the NIPALS algorithm for make a prediction and class membership score on binary or multinominal target
 }
 \examples{
 obj = plsda()
