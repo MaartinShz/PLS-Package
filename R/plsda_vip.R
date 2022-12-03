@@ -16,7 +16,7 @@
 #' plsda_vip=(object = objPLSDA,threshold=0.7)
 #'
 #'
-plsda_vip<-function(Object,formula,threshold=0.5){
+plsda_vip<-function(Object,formula,threshold=0.8){
 
   # Taking information from the object PLSDA
   xs=Object$x_scores
@@ -54,12 +54,12 @@ plsda_vip<-function(Object,formula,threshold=0.5){
   return(list("newX"=newX, "vip"=vip, "newdataset"=newdataset))
 }
 
-#Object = obj
-#test=plsda_vip(obj)
-#obj$x
-#test$newX
-#test$vip
-#test$newdataset
+Object = obj
+test=plsda_vip(obj)
+obj$x
+test$newX
+test$vip
+test$newdataset
 
 #ncomp = 2
 
