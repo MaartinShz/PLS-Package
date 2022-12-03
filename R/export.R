@@ -9,17 +9,22 @@
 #'
 #' @param
 #' obj plsda object
+#' ypred prediction made by the plsda_predict function
+#' path localisation of the file in your local machine. Be careful to use backslash between directory and give a name to your file at the end of the path
 #'
 #' @return
-#' Value return
-#' ypred prediction made by the plsda_predict function
+#' prediction in a csv file
+#'
 #'
 #' @examples
 #'obj = plsda()
 #'obj = plsda_fit(obj,target~.,data,ncomp=2)
 #'ypred = plsda_predict(obj, xtest,type = "posterior")
-#'export.plsda(ypred)
 #'
+#'export.plsda(ypred)
+#'export.plsda(iris,"C:/Users/Maartin/Downloads/NameoftheFilePrediction.csv")
+#'
+
 export.plsda <- function(ypred, path=NULL){ # function to export a dataframe to a csv file
 
   if (!is.data.frame(ypred) & !is.matrix(ypred)){ #check if data is a dataframe or a matrix
@@ -29,6 +34,6 @@ export.plsda <- function(ypred, path=NULL){ # function to export a dataframe to 
     path = paste(getwd(),"/PredByPLS.csv",sep = "")
   }
 
-  write.csv(iris,path, row.names = TRUE) # export the file in csv
+  write.csv(ypred,path, row.names = TRUE) # export the file in csv
   print(paste("Redistered here : ",path,sep=" "))
 }
