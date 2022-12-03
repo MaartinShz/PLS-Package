@@ -21,6 +21,8 @@
 #' \cr
 #' \code{obj$x} the explicative train dataset normalize if center is true
 #' \cr
+#' \code{obj$ytarget} the explicative target dataset
+#' \cr
 #' \code{obj$y} the target train dataset normalize if center is true
 #' \cr
 #' \code{obj$y_loadings} loadings dataframe of target variable
@@ -179,6 +181,7 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
   intercept = colMeans(y)
 
   obj = list("x"=x,
+             "ytarget"=Y,
             "y"=y,
             "data"=data,
             "y_loadings"=Yloadings,

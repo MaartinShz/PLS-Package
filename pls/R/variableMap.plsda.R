@@ -1,4 +1,0 @@
-variableMap.plsda <-
-function(x, ...) {
-
-}

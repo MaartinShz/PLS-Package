@@ -6,15 +6,17 @@
 #' @description
 #' plot.plsda : plots the variances against the number of the principal component.
 #' plot.varCorr : show the correlation matrix in a pretty plot
+#' variableMap.plsda : map of individuals on 2 composant
 #'
 #' @usage
 #' plot.scree(obj)
 #' plot.varCorr(obj)
+#' variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 #'
 #' @param
 #' obj  plsda object return by fit function
 #' @return
-#' plot plot to show informtions about data
+#' plot plot to show information about data
 #'
 #' @examples
 #' obj = plsda()
@@ -22,48 +24,25 @@
 #'
 #' plot.scree(obj)
 #' plot.varCorr(obj)
+#' variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 #'
 #' @export
 #'
 
 
-plot.plsda <- function(x, ...) {
+variableMap.plsda <- function(object, comp1, comp2) {
 
-  checkinstall.plsda()
-
-  quality <- x$Quality
-  barplot(quality,
-          beside=TRUE,
-          main="Model quality by Component",
-          xlab="Component",
-          ylab="Quality",
-          col=c("red","blue"),
-          space=c(0.05,0.2),
-          legend=rownames(quality))
-
-
-  VIP <- x$VIP
-  for (h in 1:ncol(VIP)) {
-    barplot(VIP[,h],
-            names.arg=rownames(VIP),
-            main=c(paste("Variable Importance Plot for component",h),"Confidence interval at 0.95%"),
-            xlab="Variables",
-            ylab="VIP",
-            col="blue")
-    abline(a=0,b=0,h=0.8,v=0,lty=5)
-    abline(a=0,b=0,h=1,v=0,lty=5)
-
+  if (class(object)!="PLSDA") {
+    stop("Object's class is not PLSDA")
   }
-}
 
-
-variableMap.plsda <- function(x, ...) {
+  plot(comp1,comp2,xlab="Comp.1",ylab="Comp.2", col = obj$ytarget)
+  abline(h=0,v=0)
 
 }
 
 plot.scree <- function(object){ # scree plot used to determine the number of factors to retain of a pls object
 
-  checkinstall.plsda()
 
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
@@ -104,12 +83,3 @@ plot.varCorr <- function(object){ # plot to show Correlation matrix of explicati
     geom_tile()# print the plot
 
 }
-
-#obj = plsda()
-#obj = plsda_fit(obj, Species~., iris,2)
-#plot.varCorr(obj)
-#plot.scree(obj)
-
-#Carte des individus dans « les » espaces factoriels
-#• Courbes mettant en relation le nombre de composants à sélectionner et un critère
-#quelconque d’évaluation de la qualité de la modélisation (éventuellement calculé avec une procédure de rééchantillonnage)

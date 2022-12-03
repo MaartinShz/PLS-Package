@@ -2,21 +2,23 @@
 % Please edit documentation in R/plot.R
 \name{plot}
 \alias{plot}
-\alias{plot.plsda}
+\alias{variableMap.plsda}
 \title{plot}
 \usage{
 plot.scree(obj)
 plot.varCorr(obj)
+variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 }
 \arguments{
 \item{obj}{plsda object return by fit function}
 }
 \value{
-plot plot to show informtions about data
+plot plot to show information about data
 }
 \description{
 plot.plsda : plots the variances against the number of the principal component.
 plot.varCorr : show the correlation matrix in a pretty plot
+variableMap.plsda : map of individuals on 2 composant
 }
 \examples{
 obj = plsda()
@@ -24,5 +26,6 @@ plsda_fit(obj,Species~., iris, ncomp=2)
 
 plot.scree(obj)
 plot.varCorr(obj)
+variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 
 }

@@ -19,6 +19,8 @@ obj plsda object with attributes below
 \cr
 \code{obj$x} the explicative train dataset normalize if center is true
 \cr
+\code{obj$ytarget} the explicative target dataset
+\cr
 \code{obj$y} the target train dataset normalize if center is true
 \cr
 \code{obj$y_loadings} loadings dataframe of target variable
