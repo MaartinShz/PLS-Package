@@ -1,8 +1,8 @@
 #' plsda_predict
 #'
 #' @description
-#' Method to use The Partial least squares regression Prediction
-#' It make a prediction on test data
+#' Method to use The Partial least squares regression Prediction model To make a prediction on test data
+#'
 #'
 #' @usage
 #' plsda_predict(obj,newdata)
@@ -13,8 +13,10 @@
 #' type "posterior" or "class" return format of the method
 #'
 #' @return
-#' type= posterior to have probability of class membership by observation
-#' type= class to have the class predicted by observation
+#' pred dataframe of prediction
+#' if type= "posterior" to have probability of class membership by observation
+#' Or
+#' if type= "class" to have the class predicted by observation
 #'
 #'
 #' @examples
