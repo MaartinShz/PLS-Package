@@ -6,7 +6,7 @@
 #' @description
 #' plot.plsda : plots the variances against the number of the principal component.
 #' plot.varCorr : show the correlation matrix in a pretty plot
-#' variableMap.plsda : map of individuals on 2 composant
+#' variableMap.plsda : map of individuals on 2 composants
 #'
 #' @usage
 #' plot.scree(obj)
@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' obj = plsda()
-#' plsda_fit(obj,Species~., iris, ncomp=2)
+#' obj =plsda_fit(obj,Species~., iris, ncomp=2)
 #'
 #' plot.scree(obj)
 #' plot.varCorr(obj)
@@ -36,7 +36,8 @@ variableMap.plsda <- function(object, comp1, comp2) {
     stop("Object's class is not PLSDA")
   }
 
-  plot(comp1,comp2,xlab="Comp.1",ylab="Comp.2", col = obj$ytarget)
+  plot(comp1,comp2,xlab="Comp.1",ylab="Comp.2", col =obj$ytarget , bty ="n")
+  text(comp1,comp2,labels=obj$ytarget,cex=0.60)
   abline(h=0,v=0)
 
 }
