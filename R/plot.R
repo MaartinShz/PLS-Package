@@ -1,6 +1,5 @@
 #' plot
 #'
-#'
 #' @name
 #' plot
 #'
@@ -23,6 +22,8 @@
 #'
 #' plot.scree(obj)
 #' plot.varCorr(obj)
+#'
+#' @export
 #'
 
 

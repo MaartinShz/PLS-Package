@@ -17,6 +17,8 @@
 #' checkinstall.plsda()
 #' checkinstall.shiny.plsda()
 #'
+#' @export
+#'
 
 checkinstall.plsda <- function() {
 

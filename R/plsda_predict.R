@@ -25,7 +25,7 @@
 #' newdata= iris[,-ncol(iris)]
 #' plsda_predict(obj,newdata)
 #'
-#'
+#' @export
 #'
 
 plsda_predict<-function(obj, newdata, type="posterior"){

@@ -8,50 +8,23 @@ plsda_fit(obj,data$Species, data, ncomp=2)
 }
 \arguments{
 \item{object}{PLDA Object
-formula an object of class formula use to select exolicative data and taget data of the dataset
+formula vector of the target data of the train dataset
 data dataframe of the train dataset
 ncomp integer number of composant
-var.select boolean for use the vip function
-centre boolean if the data need to be normalize}
+var.select boolean made a variable selection or not
+centre boolean if the data need to be normalize
+threshold to choose importants variables}
 }
 \value{
-obj plsda object with attributes below
-\cr
-\code{obj$x} the explicative train dataset normalize if center is true
-\cr
-\code{obj$y} the target train dataset normalize if center is true
-\cr
-\code{obj$y_loadings} loadings dataframe of target variable
-\cr
-\code{obj$y_scores} scores dataframe of target variable
-\cr
-\code{obj$x_weights} weights dataframe of explicatives variables
-\cr
-\code{obj$x_loadings} loadings dataframe of explicatives variables
-\cr
-\code{obj$x_scores} scores dataframe of explicatives variables
-\cr
-\code{obj$corrX} correlation between each explicatives variables
-\cr
-\code{obj$eigen} eigen values of explicatves variables
-\cr
-\code{obj$ncomp} number of composant
-\cr
-\code{obj$coefficients} coefficients use for prediction
-\cr
-\code{obj$intercept} Intercept coefficient
-\cr
+obj plsda object
 }
 \description{
 Method to use The Partial least squares regression
 It initialize the method and train the model with the pls regression
-This function use the NIPALS algorithm for make a prediction and class membership score on binary or multinominal target
+to make a prediction on a dataset
 }
 \examples{
 obj = plsda()
-plsda_fit(obj,Species~., iris, ncomp=2)
-
-objpls = plsda(ncomp=2)
-plsda_fit(objpls,Species~., iris, objpls$ncomp)
+plsda_fit(obj,iris$Species, iris, ncomp=2)
 
 }

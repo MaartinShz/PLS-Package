@@ -1,11 +1,11 @@
-Package: plsda
+Package: plsdaSise
 Type: Package
-Title: What the Package Does (Title Case)
+Title: plsdaSise
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: MaartinShz Louison-Papazian Kenan Rnd
+Maintainer: The package maintainer https://github.com/MaartinShz/PLS-Package
+Description:
+    use PLS method to do prediction
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

@@ -1,3 +1,19 @@
+#' GridSearchCV
+#'
+#' @param
+#'
+#' @param
+#'
+#' @return
+#'
+#'
+#'
+#'
+#' @examples
+#'
+#'
+#' @export
+#'
 GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
 
     if (class(ObjectPLSDA)!="PLSDA") {

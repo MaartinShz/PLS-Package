@@ -18,4 +18,5 @@ The different modalities are recorded in new columns that encode the presence of
 }
 \examples{
 ydummies = get_dummies(iris$Species)
+
 }

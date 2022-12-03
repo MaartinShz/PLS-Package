@@ -17,12 +17,14 @@
 #'
 #'
 #' @examples
-#'obj = plsda()
-#'obj = plsda_fit(obj,target~.,data,ncomp=2)
-#'ypred = plsda_predict(obj, xtest,type = "posterior")
+#' obj = plsda()
+#' obj = plsda_fit(obj,target~.,data,ncomp=2)
+#' ypred = plsda_predict(obj, xtest,type = "posterior")
 #'
-#'export.plsda(ypred)
-#'export.plsda(iris,"C:/Users/Maartin/Downloads/NameoftheFilePrediction.csv")
+#' export.plsda(ypred)
+#' export.plsda(iris,"C:/Users/Maartin/Downloads/NameoftheFilePrediction.csv")
+#'
+#' @export
 #'
 
 export.plsda <- function(ypred, path=NULL){ # function to export a dataframe to a csv file

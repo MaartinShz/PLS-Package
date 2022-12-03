@@ -26,6 +26,4 @@ obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
 newdata= iris[,-ncol(iris)]
 plsda_predict(obj,newdata)
 
-
-
 }

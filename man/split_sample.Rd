@@ -16,8 +16,7 @@ train_perc value between 0 and 1 to which gives the percentage of the size of th
 }
 \description{
 functions to split a dataset in 2 sub-dataframe.
-one dataset of learning
-one dataset for testing
+one dataset of learningand one dataset for testing
 }
 \examples{
 split_sample(data=iris, train_perc=0.7)

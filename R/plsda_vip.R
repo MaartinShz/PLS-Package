@@ -15,6 +15,7 @@
 #' plsda_vip=(object = objPLSDA)
 #' plsda_vip=(object = objPLSDA,threshold=0.7)
 #'
+#' @export
 #'
 plsda_vip<-function(Object,formula,threshold=0.8){
 
@@ -54,12 +55,4 @@ plsda_vip<-function(Object,formula,threshold=0.8){
   return(list("newX"=newX, "vip"=vip, "newdataset"=newdataset))
 }
 
-Object = obj
-test=plsda_vip(obj)
-obj$x
-test$newX
-test$vip
-test$newdataset
-
-#ncomp = 2
 

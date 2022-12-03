@@ -20,8 +20,11 @@
 #' obj plsda object
 #'
 #' @examples
-#'obj = plsda()
-#'plsda_fit(obj,iris$Species, iris, ncomp=2)
+#' obj = plsda()
+#' plsda_fit(obj,iris$Species, iris, ncomp=2)
+#'
+#' @export
+#'
 
 plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T, threshold = 0.8){
 
@@ -163,10 +166,10 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
 
 }
 
-data = iris
-obj = plsda()
-obj = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
-plot.varCorr(obj)
+#data = iris
+#obj = plsda()
+#obj = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
+#plot.varCorr(obj)
 
-print(obj)
+#print(obj)
 #print(plsda_fit(obj, Species ~ Sepal.Length + Petal.Length, data = iris, ncomp = 2))

@@ -14,6 +14,9 @@
 #'
 #' @examples
 #' ydummies = get_dummies(iris$Species)
+#'
+#' @export
+#'
 
 get_dummies<-function(y){
 

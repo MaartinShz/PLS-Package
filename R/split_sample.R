@@ -2,8 +2,7 @@
 #'
 #' @description
 #' functions to split a dataset in 2 sub-dataframe.
-#' one dataset of learning
-#' one dataset for testing
+#' one dataset of learningand one dataset for testing
 #'
 #'
 #' @usage
@@ -20,6 +19,8 @@
 #' @examples
 #' split_sample(data=iris, train_perc=0.7)
 #' split_sample(data=iris, train_perc=(1-0.3))
+#'
+#' @export
 #'
 
 split_sample = function(data, train_perc = 0.7){

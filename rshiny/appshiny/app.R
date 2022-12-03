@@ -8,7 +8,6 @@ ui <- fluidPage(
     navbarPage("PLS App",
                # Page 1 For import Data
                tabPanel("Import Data",
-
                         sidebarLayout(
                             sidebarPanel(
                                 # Informations to complete on the left side of the page 1
@@ -76,7 +75,6 @@ ui <- fluidPage(
                         )
                         )
     )
-
 )
 
 

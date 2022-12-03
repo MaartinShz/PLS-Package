@@ -22,6 +22,8 @@
 #' print(obj)
 #' summary(obj)
 #'
+#' @export
+#'
 plsda = function(ncomp=NULL){
 
   if(!is.numeric(ncomp) & !is.null(ncomp)){
