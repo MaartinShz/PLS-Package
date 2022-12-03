@@ -7,7 +7,7 @@
 plsda_predict(obj,newdata)
 }
 \arguments{
-\item{object}{PLDA Object
+\item{obj}{PLDA object
 newdata dataframe of the test dataset with no target variable
 type "posterior" or "class" return format of the method}
 }
@@ -20,10 +20,11 @@ Method to use The Partial least squares regression Prediction
 It make a prediction on test data
 }
 \examples{
-#obj = plsda()
+obj = plsda()
 obj = plsda_fit(obj,iris$Species,iris,ncomp=2)
 newdata= iris[,-ncol(iris)]
 plsda_predict(obj,newdata)
+
 
 
 }
