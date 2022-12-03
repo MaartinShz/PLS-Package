@@ -1,15 +1,13 @@
 # 🖐 PLS-Package 🖐
-Is a package proposing a PLS regression method for ranking purposes.
-
-PLS regression is used to predict a set of dependent variables from a very large set of explanatory variables that may be very highly correlated
-
 
 -   [Introduction](#introduction)
 
 
 ## Introduction
 
-Ceci est un test
+It's a package proposing a PLS regression method for ranking purposes.
+PLS regression is used to predict a set of dependent variables from a very large set of explanatory variables that may be very highly correlated.
+In this ReadMe, we will show you how our package works with the Iris dataset, native dataset from R.
 
 ## Setup
 
