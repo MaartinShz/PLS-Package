@@ -160,6 +160,7 @@ predTest = plsda_predict(plsTrain, Xtest,type = "class")
 cm = table(Ytest, predTest)
 print(cm)
 ```
+![image](https://user-images.githubusercontent.com/114392261/205512817-d09e1356-5cb9-4272-933a-49a12d10ce4a.png)
 
 ## Plot
 
