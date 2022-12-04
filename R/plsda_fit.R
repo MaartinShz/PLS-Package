@@ -10,7 +10,7 @@
 #'
 #' @param
 #' object PLDA Object
-#' formula an object of class formula use to select exolicative data and taget data of the dataset
+#' formula an object of class formula use to select exolicative data and target data of the dataset
 #' data dataframe of the train dataset
 #' ncomp integer number of composant
 #' var.select boolean for use the vip function

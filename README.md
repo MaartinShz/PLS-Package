@@ -1,6 +1,14 @@
 # 🖐 PLS-Package 🖐
 
 -   [Introduction](#introduction)
+-   [Setup](#setup)
+-   [PLSDA object](#plsda-object)
+-   [Function fit](#function-fit)
+    -   [Parameters](#parameters)
+    -   [Function usage](#function-usage---print)
+-   [Function predict](#function-predict)
+    -   [Parameters](#parameters-1)
+    -   [Function usage](#function-usage)
 
 
 ## Introduction
@@ -11,7 +19,7 @@ In this ReadMe, we will show you how our package works with the Iris dataset, na
 
 ## Setup
 
-To use the package in your environment r. You have two solutions.
+To use the package in your environment R. You have two solutions.
 Download the file with extension .tar.gz from the repository then go to your IDE and install the package manually.
 
 ![install1](https://user-images.githubusercontent.com/43068347/204146389-5f08c16a-0f82-4f6a-a5ab-abc56581eeed.jpg)
@@ -24,11 +32,85 @@ library(devtools)
 install_github("MaartinShz/PLS-Package")
 ```
 
+Once you have install the package, you should use the command "plsdaSise::" before the function to use it.
 
+```
+plsdaSise::plsda()
+```
 
-## Prediction - Usage
+If you have a question about a function you can run the command "help". That will show you some explanation about the function and also some examples.
 
-## Display
+```
+help(plsda)
+```
+
+## PLSDA object
+
+The first step to use our package, is to create a PLSDA object. To do this, we need to call the function plsda.
+
+```
+obj = plsdaSise::plsda()
+```
+
+## Function fit
+
+### Parameters
+After the construction of the object, we can apply the function plsda_fit to our oject.
+This function have many parameters :
+
+- object
+- formula
+- data
+- ncomp
+- var.select
+- center
+- threshold
+
+4 of them have a value by default so we will explain here only the 3 paramaters that you need to use for the function. Object is a PLSDA object created above, formula is an object of class formula use to select explicative data and target data of the dataset and finaly there is data that we want to apply a PLS regression.
+
+### Function usage - Print 
+Here some examples of using the function.
+
+```
+fit = plsdaSise::plsda_fit(obj,Species~., iris)
+
+#Here we want same thing but with a selection of variable and a define number of composant
+fit = plsdaSise::plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
+
+```
+
+If you want to see the result, you can print it and you will see a list of 14 features. We overload the print function for this object so you only need to use the command "print".
+```
+print(fit)
+
+image print.png
+```
+
+## Function predict
+
+Finally, we can use the prediction model to use on a test data.
+
+### Parameters
+There is 3 parameters :
+
+- obj : object PLSDA
+- newdata : data we want to predict (without the target)
+- type : posterior or class (probability for each class or target prediction)
+
+### Function usage
+To predict the target of our dataset we need to use the function plsda_predict
+
+```
+plsdaSise::plsda_predict(obj,newdata,type = "class")
+image result.png
+```
+
+```
+plsdaSise::plsda_predict(obj,newdata,type = "posterior")
+image result.png
+```
+
+## Plot
 
 ## Application r-Shiny
 
