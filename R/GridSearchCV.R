@@ -24,7 +24,7 @@
 #'
 #' @export
 #'
-GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
+GridSearchCV = function(ObjectPLSDA=obj, formula, data, cv = 5, method = 'rsplit'){
 
     if (class(ObjectPLSDA)!="PLSDA") {
       stop("Object's class is not PLSDA")
@@ -59,13 +59,15 @@ GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
 
     #initialization
     realfscore = c()
+    realfscorevector = c()
     models = list()
-    for(k in cv){
+    for(k in 1:cv){
 
       # selection of X the predictive data  and  Y the target data
       X = model.matrix(Species~.,data=data)[,-1]
       Y = model.response(model.frame(Species~., data = data))
       Y = as.factor(as.vector(Y))
+      Ycol = setdiff(colnames(data),colnames(X))
 
       #Folds recuperation
       ind = fold[[k]]
@@ -73,11 +75,10 @@ GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
       test = shuffled_data[ind,]
 
       Xtest = data.frame(test[,colnames(X)])
-      Ytest = test[,colnames(Y)]
-
+      Ytest = test[,Ycol]
       #learning from the train and predict in the test
       plsTrain = plsda_fit(ObjectPLSDA, Species~., train)
-      predTest = plsda_predict(plsTrain, Xtest)
+      predTest = plsda_predict(plsTrain, Xtest,type = "class")
 
       #confusion matrix
       cm = table(Ytest, predTest)
@@ -100,9 +101,11 @@ GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
     #We take the best model and his f-score
     model = models[[which.max(realfscorevector)]]
     fscore = realfscorevector[which.max(realfscorevector)]
-
-    return(list("model" = model, "fscore" = fscore))
+    return(list("model" = model, "fscore" = fscore ))
 }
 
 
-#GridSearchCV(obj,Species~.,data)
+#ah = GridSearchCV(obj,Species~.,iris)
+#ah$model
+#ah$fscore
+
