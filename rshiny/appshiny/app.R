@@ -1,4 +1,4 @@
-
+library(plsdaSise)
 checkinstall.shiny.plsda()
 # Interface Part - front-end App
 ui <- fluidPage(
