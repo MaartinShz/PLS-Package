@@ -194,9 +194,13 @@ We will explain below all the features of our application.
 #### Import Data
 When you run the app, it opens on the "Import Data" tab.
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205500575-d06b228f-73b4-4cc4-9bf1-d86f32e1128e.png)
 
 To use the features we need to import a file, he can be a csv or an excel type. Once you select the type, you can choose the separator, the sheet you want and if your dataset have a header or not.
+You can see the result on the right.
+
+![image](https://user-images.githubusercontent.com/114392261/205500951-58a8569c-cfed-42ac-9f8a-a83c132505fc.png)
+
 You don't need to validate something, your dataset is created when you browse your file.
 
 #### Fit and Predict
@@ -204,17 +208,17 @@ This tab is the most important, it's here that we train the data and predict the
 First of all we select our X variables and our target. There is lot of parameters like the number of composant, if we want variables selection etc.
 Here it is an exemple of what we can do :
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205500984-1bb5fe9d-0c90-464f-aa96-03cd7cb66c41.png)
 
 Once you complete your selection and check your options, you click on the fit model button and you will see the result on the right of the app.
 
 Now the predict is completed so we have to predict. to do this just click on the predict model button and you will see the result below the fit model.
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501007-5f5286ae-853b-4ab5-b5e7-c0747585af64.png)
 
 By default, the prediction's type is "posterior", so you can change it before the predict to see the difference. Here I click on Class radio button to change the type and I predict the model once more :
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501021-3a58856d-2bce-43b1-890b-fae1c0d6f102.png)
 
 Finally, if you don't split the Data, you can choose your file test with the final option below the prediction.
 
@@ -222,21 +226,21 @@ Finally, if you don't split the Data, you can choose your file test with the fin
 The plot tab contains 2 different graphs. The first one is a scree plot that show us the eigen values of each composant of the model.
 If you click on the composant plot, you will see the scree plot on the right and below the button the number of composant in the fit.
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501040-f9e7bb7a-c6d5-48d2-b667-81c2509790dc.png)
 
 The second graph, is a composant map that will show us the correlation between the different X variables.
 If you click on the composant map plot, it shows a graph below the first one that show us the X variables around the 2 composants that we choose.
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501057-9a35ba97-ed5e-47eb-b786-da15e0a914d2.png)
 
 Little tips, we can see values of the points when we pass on them. We can select which variables we want to see when we clck on them in the legends.
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501076-f2f6f96b-3062-457a-af0c-cab4d00aa4c7.png)
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501091-097dbbce-3d01-4082-bd1a-5052be37316e.png)
 
 #### Export
 The last one is simple, you can click on the button to export your prediction and we show you some entries of your prediction.
 Above the prediction you have the path where the file is save.
 
-image.png
+![image](https://user-images.githubusercontent.com/114392261/205501101-27dbf931-c12a-4ab8-a8d4-4544617de4a8.png)
