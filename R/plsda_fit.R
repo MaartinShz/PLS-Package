@@ -199,10 +199,3 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, center=T,
  return(obj)
 
 }
-
-#obj = plsda()
-#obj = plsda_fit(obj,Species~., iris,ncomp=2, var.select = F)
-#plot.varCorr(obj)
-
-#print(obj)
-#print(plsda_fit(obj, Species ~ Sepal.Length + Petal.Length, data = iris, ncomp = 2))

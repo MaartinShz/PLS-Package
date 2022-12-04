@@ -111,11 +111,3 @@ GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
     fscore = realfscorevector[which.max(realfscorevector)]
     return(list("model" = model, "fscore" = fscore ))
 }
-
-
-
-
-#ah = GridSearchCV(obj,Species~.,iris)
-#ah$model
-#ah$fscore
-
