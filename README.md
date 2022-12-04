@@ -8,7 +8,7 @@
     -   [Function usage](#function-usage---print)
 -   [Function predict](#function-predict)
     -   [Parameters](#parameters-1)
-
+    -   [Function usage](#function-usage)
 
 
 ## Introduction
@@ -49,7 +49,7 @@ help(plsda)
 The first step to use our package, is to create a PLSDA object. To do this, we need to call the function plsda.
 
 ```
-obj = plsda()
+obj = plsdaSise::plsda()
 ```
 
 ## Function fit
@@ -72,10 +72,10 @@ This function have many parameters :
 Here some examples of using the function.
 
 ```
-fit = plsda_fit(obj,Species~., iris)
+fit = plsdaSise::plsda_fit(obj,Species~., iris)
 
 #Here we want same thing but with a selection of variable and a define number of composant
-fit = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
+fit = plsdaSise::plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
 
 ```
 
@@ -91,8 +91,26 @@ image print.png
 Finally, we can use the prediction model to use on a test data.
 
 ### Parameters
+There is 3 parameters :
 
-## Display
+- obj : object PLSDA
+- newdata : data we want to predict (without the target)
+- type : posterior or class (probability for each class or target prediction)
+
+### Function usage
+To predict the target of our dataset we need to use the function plsda_predict
+
+```
+plsdaSise::plsda_predict(obj,newdata,type = "class")
+image result.png
+```
+
+```
+plsdaSise::plsda_predict(obj,newdata,type = "posterior")
+image result.png
+```
+
+## Plot
 
 ## Application r-Shiny
 
