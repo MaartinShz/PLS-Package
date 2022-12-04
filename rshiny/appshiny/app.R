@@ -57,6 +57,8 @@ ui <- fluidPage(
                                 radioButtons("typePred","Prediction: ",choices = c("Posterior"="posterior", "Class"="class"), selected="posterior",inline=TRUE),
                                 fileInput("fileTest", "Choose your File Test, if you don't split", accept = c("text/csv","text/comma-separated-values,text/plain", ".csv")),
                                 radioButtons("typepred","Type: ",choices = c("Xlsx"="xlsx","Csv"="csv"), selected="csv",inline=TRUE),
+                                checkboxInput("headerpred", "Header", TRUE),
+                                radioButtons("separatorpred","Separator: ",choices = c(";",",",":"), selected=";",inline=TRUE),
                             ),
                             mainPanel(dataTableOutput("fit"), dataTableOutput("predict")) # Principal Part show result of the function fit and predict
                         )
@@ -187,12 +189,14 @@ server <- function(input, output) {
         }
         else{# possibility to the user to import his data test
           if(input$typepred == "xlsx"){
-            newdata = read_excel(path=inFilepred$datapath)
+            newdata = read_excel(path=inFilepred$datapath,col_names=as.logical(input$headerpred))
           }else if (input$typepred == "csv"){ # import of the file data test
-            newdata = read.csv(inFilepred$datapath)
+            newdata = read.csv(inFilepred$datapath, header =input$headerpred, sep = input$separatorpred)
           }
 
         }
+
+
 
         newdataX = newdata[,setdiff(colnames(newdata), target)] # transform data test in explicative test data
         newdataY = newdata[,target] # transform data test in target test data
