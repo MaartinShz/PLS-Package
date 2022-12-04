@@ -85,7 +85,7 @@ This function have many parameters :
 - center
 - threshold
 
-4 of them have a value by default so we will explain here only the 3 paramaters that you need to use for the function. Object is a PLSDA object created above, formula is an object of class formula use to select explicative data and target data of the dataset and finaly there is data that we want to apply a PLS regression.
+4 of them have a value by default so we will explain here only the 3 parameters that you need to use for the function. Object is a PLSDA object created above, formula is an object of class formula use to select explicative data and target data of the dataset and finaly there is data that we want to apply a PLS regression.
 
 ### Function usage - Print 
 Here some examples of using the function.
@@ -111,6 +111,30 @@ We overload the summary method too. Here it is the result :
 
 
 ![summary1](https://user-images.githubusercontent.com/43068347/205502856-397a559c-10d9-4af9-9b10-bf687063ecff.jpg)
+
+## VIP function
+
+VIP function is here to searching best variables to construct the model.
+We use this function in the function fit if you select "var.select"=TRUE but you can also use it separatly.
+
+This function has 3 parameters :
+
+- object : PLSDA object
+- formula : object of class formula
+- threshold : that's the value of the threshold, we take all the variables that have a superior value that this threshold
+
+We can use the VIP function like below.
+
+```
+plsda_vip(fit, Species~.)
+```
+
+It will return 3 variables :
+
+- newX = the new variable set, they are the most important variable for the model
+- vip = a dataframe that show the value of each variable for each composant
+- newdataset = a dataset construct by the selected variables
+
 
 ## Function predict
 
