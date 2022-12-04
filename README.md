@@ -72,7 +72,7 @@ obj = plsdaSise::plsda()
 ## Function fit
 
 ### Parameters
-After the construction of the object, we can apply the function plsda_fit to our oject.
+After the construction of the object, we can apply the function plsda_fit to our object.
 This function have many parameters :
 
 - object
