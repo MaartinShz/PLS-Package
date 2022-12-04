@@ -11,7 +11,12 @@
     -   [Function usage](#function-usage)
 -   [Plots](#plot)
 -   [Rshiny app](#application-r-shiny)
-
+    -   [Setup](#how-to-setup-the-app)
+    -   [App](#app)
+        -   [Import Data](#import-data)
+        -   [Fit and Predict](#fit-and-predict)
+        -   [Plots](#plots)
+        -   [Export](#export)
 
 ## Introduction
 
@@ -167,9 +172,71 @@ plsdaSise::variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 
 ## Application r-Shiny
 
+
+### How to setup the app
 This repository has an r-shiny application allowing to use the package in a graphical way and to simply present it and take it in hand 
 You just need to have the shiny library on your computer 
 and you should be able to launch the application from your IDE from one of the files in the rshiny repository folder
 Example below: 
 
 ![image](https://user-images.githubusercontent.com/43068347/204147679-80463626-b954-44bf-9f5d-21364aa06ae7.png)
+
+### App
+
+The shiny app contains 4 tabs :
+- Import Data
+- Fit and Predict
+- Plots
+- Export
+
+We will explain below all the features of our application.
+
+#### Import Data
+When you run the app, it opens on the "Import Data" tab.
+
+image.png
+
+To use the features we need to import a file, he can be a csv or an excel type. Once you select the type, you can choose the separator, the sheet you want and if your dataset have a header or not.
+You don't need to validate something, your dataset is created when you browse your file.
+
+#### Fit and Predict
+This tab is the most important, it's here that we train the data and predict the target.
+First of all we select our X variables and our target. There is lot of parameters like the number of composant, if we want variables selection etc.
+Here it is an exemple of what we can do :
+
+image.png
+
+Once you complete your selection and check your options, you click on the fit model button and you will see the result on the right of the app.
+
+Now the predict is completed so we have to predict. to do this just click on the predict model button and you will see the result below the fit model.
+
+image.png
+
+By default, the prediction's type is "posterior", so you can change it before the predict to see the difference. Here I click on Class radio button to change the type and I predict the model once more :
+
+image.png
+
+Finally, if you don't split the Data, you can choose your file test with the final option below the prediction.
+
+#### Plots
+The plot tab contains 2 different graphs. The first one is a scree plot that show us the eigen values of each composant of the model.
+If you click on the composant plot, you will see the scree plot on the right and below the button the number of composant in the fit.
+
+image.png
+
+The second graph, is a composant map that will show us the correlation between the different X variables.
+If you click on the composant map plot, it shows a graph below the first one that show us the X variables around the 2 composants that we choose.
+
+image.png
+
+Little tips, we can see values of the points when we pass on them. We can select which variables we want to see when we clck on them in the legends.
+
+image.png
+
+image.png
+
+#### Export
+The last one is simple, you can click on the button to export your prediction and we show you some entries of your prediction.
+Above the prediction you have the path where the file is save.
+
+image.png
