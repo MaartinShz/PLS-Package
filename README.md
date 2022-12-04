@@ -138,11 +138,12 @@ Here the line code that allow you to make the plot.
 plot.scree(obj)
 ```
 
+![image](https://user-images.githubusercontent.com/114392261/205472638-28588055-c233-42fb-a525-4b2afea9cd7e.png)
 
 ```
 plot.varCorr(obj)
 ```
-
+![image](https://user-images.githubusercontent.com/114392261/205472643-fd3f7cef-c7d1-4696-a1e9-1c915c3be1d1.png)
 
 For the last graph, we need 2 more parameters. comp1 and comp2, there are the 2 components that we want to use for the plot.
 
@@ -150,6 +151,7 @@ For the last graph, we need 2 more parameters. comp1 and comp2, there are the 2 
 variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 ```
 
+![image](https://user-images.githubusercontent.com/114392261/205472646-08d47897-0869-4a85-a78a-257102a0fb48.png)
 
 ## Application r-Shiny
 
