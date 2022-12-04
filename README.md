@@ -6,6 +6,7 @@
 -   [Function fit](#function-fit)
     -   [Parameters](#parameters)
     -   [Function usage](#function-usage---print)
+-   [Function VIP](#
 -   [Function predict](#function-predict)
     -   [Parameters](#parameters-1)
     -   [Function usage](#function-usage)
@@ -135,6 +136,7 @@ It will return 3 variables :
 - vip = a dataframe that show the value of each variable for each composant
 - newdataset = a dataset construct by the selected variables
 
+![image](https://user-images.githubusercontent.com/114392261/205515697-c0a92d97-590d-45aa-b3bb-95efc677a870.png)
 
 ## Function predict
 
