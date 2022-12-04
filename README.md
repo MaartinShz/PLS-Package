@@ -9,6 +9,8 @@
 -   [Function predict](#function-predict)
     -   [Parameters](#parameters-1)
     -   [Function usage](#function-usage)
+    -   [Confusion matrix](#confusion-matrix)
+-   [GridSearchCV](#gridsearchcv)
 -   [Plots](#plot)
 -   [Rshiny app](#application-r-shiny)
     -   [Setup](#how-to-setup-the-app)
@@ -140,6 +142,8 @@ Here we have the probabilty of class membership by observation :
 
 ![image](https://user-images.githubusercontent.com/114392261/205471939-cd7b21ed-2265-4973-91a8-18f7fd0f797e.png)
 
+
+### Confusion matrix
 When you finish all steps, you can make a confusion matrix with the result of the prediction.
 We show you how to do this below.
 
@@ -161,6 +165,33 @@ cm = table(Ytest, predTest)
 print(cm)
 ```
 
+## GridSearchCV
+
+The goal of this function is to take the best model made by the cross validation.
+It has 3 parameters :
+
+- ObjectPLSDA : PLSDA object
+- formula : object of class formula
+- data : dataset
+- cv : number of part for splitting ( 5 by default)
+- method : How do we split the dataset, there is 2 different method (rsplit and kfold)
+
+After the cross validation you selected, the function will make X predictions (number of the parameter cv) and will calculate the fscore of each.
+The function will return the resukt with the best model and his fscore.
+
+```
+BM = GridSearchCV(obj,Species~.,iris)
+```
+If you want to see the model or the fscore look below.
+
+```
+BM$model
+```
+
+
+```
+BM$fscore
+```
 ## Plot
 
 Our package offer some plot to observe the data.

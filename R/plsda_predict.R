@@ -57,10 +57,3 @@ plsda_predict<-function(obj, newdata, type="posterior"){
     return(colnames(obj$y)[pred])# return the target prediction for each observation
   }
 }
-
-#obj = plsda()
-#obj = plsda_fit(obj,Species~.,iris,ncomp=2)
-#newdata= iris[,-ncol(iris)]
-#predict = plsda_predict(obj,newdata,type = "class")
-
-

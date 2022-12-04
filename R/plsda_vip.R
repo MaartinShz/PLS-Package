@@ -1,5 +1,8 @@
 #' Variable Importance in Projection
 #'
+#' @description
+#' This function search for best variables to construct the best model.
+#'
 #' @param object
 #' A PLSDA class model.
 #' @param threshold

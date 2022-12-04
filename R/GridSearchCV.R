@@ -1,5 +1,9 @@
 #' GridSearchCV
 #'
+#' @description
+#' First of all, this function will make a cross validation of the dataset and will calculate the F1-score.
+#' The best model of this will be return with his fscore.
+#'
 #' @param objectPLSDA
 #' A PLSDA class model.
 #' @param formula
@@ -24,10 +28,14 @@
 #'
 #' @export
 #'
-GridSearchCV = function(ObjectPLSDA=obj, formula, data, cv = 5, method = 'rsplit'){
+GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
 
     if (class(ObjectPLSDA)!="PLSDA") {
       stop("Object's class is not PLSDA")
+    }
+
+    if (method != 'rsplit' && method != 'kfold'){
+      stop("the method need to be a rsplit or a kfold")
     }
 
     # initialization
