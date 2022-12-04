@@ -43,7 +43,7 @@ ui <- fluidPage(
                                 tags$hr(),
                                 numericInput("ncomp", "Number of Composent :", 2, min = 1),
                                 checkboxInput("vip", "Variables Selection", FALSE),
-                                checkboxInput("center", "Centre-Reduire", TRUE),
+                                checkboxInput("center", "Normalization", TRUE),
                                 tags$hr(),
 
                                 actionButton("btnFit", "Fit model"),
@@ -162,7 +162,7 @@ server <- function(input, output) {
 
         if(!is.null(formul) & !is.null(datattrain) & !is.null(input$ncomp)){ # do fit only if all the minimum of variable is not null
             obj = plsda() # creation of the object plS
-            obj = plsda_fit(obj,formula=formul, datattrain, ncomp=input$ncomp, var.select = as.logical(input$vip), centre=as.logical(input$center)) # fit function
+            obj = plsda_fit(obj,formula=formul, datattrain, ncomp=input$ncomp, var.select = as.logical(input$vip), center=as.logical(input$center)) # fit function
             fitReturn = list("obj" = obj, "newdata" = datattest, "target" = vary)
             return(fitReturn)
          }
