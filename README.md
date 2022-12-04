@@ -189,10 +189,13 @@ If you want to see the model or the fscore look below.
 BM$model
 ```
 
+![image](https://user-images.githubusercontent.com/114392261/205514311-e6df4354-85c3-4e1d-9f23-7c3a5de09be8.png)
 
 ```
 BM$fscore
 ```
+![image](https://user-images.githubusercontent.com/114392261/205514334-087e658d-7429-4a80-b336-eaab575b99e1.png)
+
 ## Plot
 
 Our package offer some plot to observe the data.
