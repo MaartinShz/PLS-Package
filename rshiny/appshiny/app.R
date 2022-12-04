@@ -1,4 +1,3 @@
-
 if(!require("plsdaSise")){
   library(devtools)
   install_github("MaartinShz/PLS-Package")
@@ -65,7 +64,7 @@ ui <- fluidPage(
                                 checkboxInput("headerpred", "Header", TRUE),
                                 radioButtons("separatorpred","Separator: ",choices = c(";",",",":"), selected=";",inline=TRUE),
                             ),
-                            mainPanel(dataTableOutput("fit"), dataTableOutput("predict")) # Principal Part show result of the function fit and predict
+                            mainPanel(dataTableOutput("fit"), tags$hr(),tags$hr(),tags$hr(),dataTableOutput("predict")) # Principal Part show result of the function fit and predict
                         )
                ),
                # Page 3 for show plot based on fit result

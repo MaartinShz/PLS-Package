@@ -37,5 +37,5 @@ export.plsda <- function(ypred, path=NULL){ # function to export a dataframe to 
   }
 
   write.csv(ypred,path, row.names = TRUE) # export the file in csv
-  print(paste("Redistered here : ",path,sep=" "))
+  print(paste("Registered here : ",path,sep=" "))
 }
