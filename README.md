@@ -1,6 +1,8 @@
 # 🖐 PLS-Package 🖐
 
 -   [Introduction](#introduction)
+-   [Setup](#setup)
+
 
 
 ## Introduction
@@ -11,7 +13,7 @@ In this ReadMe, we will show you how our package works with the Iris dataset, na
 
 ## Setup
 
-To use the package in your environment r. You have two solutions.
+To use the package in your environment R. You have two solutions.
 Download the file with extension .tar.gz from the repository then go to your IDE and install the package manually.
 
 ![install1](https://user-images.githubusercontent.com/43068347/204146389-5f08c16a-0f82-4f6a-a5ab-abc56581eeed.jpg)
@@ -24,6 +26,25 @@ library(devtools)
 install_github("MaartinShz/PLS-Package")
 ```
 
+Once you have install the package, you should use the command "plsdaSise::" before the function to use it.
+
+```
+plsdaSise::plsda()
+```
+
+If you have a question about a function you can run the command "help". That will show you some explanation about the function and also some examples.
+
+```
+help(plsda)
+```
+
+## PLSDA object
+
+The first step to use our package, is to create a PLSDA object. To do this, we need to call the function plsda.
+
+```
+obj = plsda()
+```
 
 
 ## Prediction - Usage
