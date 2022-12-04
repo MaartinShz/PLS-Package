@@ -59,7 +59,7 @@
 #' @export
 #'
 
-plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, center=T, threshold = 0.8){
+plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, center=T, threshold = 0.7){
 
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
