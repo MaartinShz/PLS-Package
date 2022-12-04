@@ -65,13 +65,15 @@ ui <- fluidPage(
                tabPanel("Plots",
                         sidebarLayout(
                           sidebarPanel(
+                            actionButton("btnHist", "Composant Plot"),
+                            tags$hr(),
                             numericInput("ncomp1", "Composent A :", 1, min = 1),
                             numericInput("ncomp2", "Composent B :", 2, min = 2),
-                            actionButton("btnPlot", "Plot"),
+                            actionButton("btnPlot", "Composant Map"),
                           ),
-                          mainPanel(tabsetPanel(
-                            tabPanel(plotlyOutput("graph"))
-                          ))
+                          mainPanel(
+                            plotlyOutput("grapHist"), plotlyOutput("graphMap")
+                          )
                         )
 
 
@@ -214,8 +216,8 @@ server <- function(input, output) {
 
 
     # Plot part
-    plot <- eventReactive(input$btnPlot,{
-      if(!is.null(fit()$obj)) # check if we get the result of the fit
+    plotMap <- eventReactive(input$btnPlot,{
+      if(!is.null(fit()$obj) & ncol(fit()$obj$x_loadings) <= max(input$ncomp1, input$ncomp2)) # check if we get the result of the fit
         {
 
           comp1 = fit()$obj$x_loadings[,input$ncomp1]
@@ -225,26 +227,43 @@ server <- function(input, output) {
           graph <- plot_ly()
           for (i in 1:ncol(fit()$obj$x)){
             graph = add_trace(graph, mode="markers", name=colnames(fit()$obj$x)[i], x=comp1[i], y=comp2[i])
-            graph = add_trace(graph, mode = 'lines', x=c(0,comp1[i]),y =c(0,comp2[i]), color = 'rgba(0,0,0,1)')
-            graph = layout(graph, legend=list(title=list(text='Variables Map')),
-                           xaxis = list(title = 'Comp1',zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
-                           yaxis = list(title = 'Comp2',zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
-                           plot_bgcolor='#d9d9d9')
-          }
 
+            graph = layout(graph, legend=list(title=list(text='Variables Map')),
+                           xaxis = list(title = paste('Comp',input$ncomp1),zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
+                           yaxis = list(title = paste('Comp',input$ncomp2),zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
+                           plot_bgcolor='#d9d9d9',showlegend = TRUE)
+            graph = add_trace(graph, mode = 'lines', x=c(0,comp1[i]),y =c(0,comp2[i]),line = list(color = 'rgb(0, 0, 0)', width = 1), name = ' ')
+          }
 
           return(graph)
         }
 
+    })
 
 
+    output$graphMap <- renderPlotly({
+      plotMap()
+    })
 
+    plotScree<- eventReactive(input$btnHist,{
+      if(!is.null(fit()$obj)) # check if we get the result of the fit
+      {
+        nbvar = length(fit()$obj$eigen$values)
+
+        hist = plot_ly()
+        for (i in 1:nbvar)
+          {
+            hist = add_trace(hist, name=paste("Comp", i), y=fit()$obj$eigen$values[i], x =i, type = "bar")
+            hist =layout(hist, yaxis=list(title="Eigen values"), xaxis=list(title="Composants Number"), legend=list(title=list(text='Composants ')), plot_bgcolor='#d9d9d9',showlegend = TRUE)
+          }
+        return(hist)
+      }
 
     })
 
 
-    output$graph <- renderPlotly({
-      plot()
+    output$grapHist<- renderPlotly({
+      plotScree()
     })
 
 
