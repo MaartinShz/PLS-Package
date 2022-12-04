@@ -1,3 +1,8 @@
+
+if(!require("plsdaSise")){
+  library(devtools)
+  install_github("MaartinShz/PLS-Package")
+}
 library(plsdaSise)
 checkinstall.shiny.plsda()
 # Interface Part - front-end App
