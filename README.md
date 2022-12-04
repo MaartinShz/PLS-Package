@@ -104,12 +104,17 @@ To predict the target of our dataset we need to use the function plsda_predict
 ```
 plsdaSise::plsda_predict(obj,newdata,type = "class")
 ```
+Here we have the value of the prediction by observation :
+
 ![image](https://user-images.githubusercontent.com/114392261/205471965-5fd14788-becf-4b14-9f9f-0eaea6957e7c.png)
 
 
 ```
 plsdaSise::plsda_predict(obj,newdata,type = "posterior")
 ```
+
+Here we have the probabilty of class membership by observation :
+
 ![image](https://user-images.githubusercontent.com/114392261/205471939-cd7b21ed-2265-4973-91a8-18f7fd0f797e.png)
 
 ## Plot
