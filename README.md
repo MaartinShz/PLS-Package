@@ -122,6 +122,32 @@ Here we have the probabilty of class membership by observation :
 
 ## Plot
 
+Our package offer some plot to observe the data.
+There are 3 different plots available : 
+
+- scree plot
+- varcorr plot
+- variableMap plot
+
+Except the last plot, plots take only one parameter : Object PLSDA.
+Here the line code that allow you to make the plot.
+
+```
+plot.scree(obj)
+```
+
+
+```
+plot.varCorr(obj)
+```
+
+
+For the last graph, we need 2 more parameters. comp1 and comp2, there are the 2 components that we want to use for the plot.
+
+```
+variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
+```
+
 
 ## Application r-Shiny
 
