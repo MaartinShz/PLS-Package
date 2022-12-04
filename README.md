@@ -102,11 +102,13 @@ print(fit)
 ```
 You can see below the lasts lines of the print
 
-![Image](https://user-images.githubusercontent.com/114392261/205471841-2db516f4-bfea-491c-8aa8-c1e4ffb81508.png)
+![print1](https://user-images.githubusercontent.com/43068347/205502818-0cf82be3-57ee-4f5a-a981-9867bbdded30.jpg)
+![print2](https://user-images.githubusercontent.com/43068347/205502830-0bca3474-d7a2-4399-a9cc-4313b20e274d.jpg)
 
 We overload the summary method too. Here it is the result :
 
-![image](https://user-images.githubusercontent.com/114392261/205472256-64eaf090-bef0-46b9-adc8-71f7d6eb1f02.png)
+
+![summary1](https://user-images.githubusercontent.com/43068347/205502856-397a559c-10d9-4af9-9b10-bf687063ecff.jpg)
 
 ## Function predict
 
