@@ -1,9 +1,8 @@
-#' checkinstall
+#' checkinstall.plsda
 #'
 #' @description
 #' functions to check if all packages are installed
 #' checkinstall.plsda function to check package that the library pls needs
-#' checkinstall.shiny.plsda function to check package that the shiny app pls needs
 #'
 #' @usage
 #' checkinstall.plsda()
@@ -15,7 +14,6 @@
 #'
 #' @examples
 #' checkinstall.plsda()
-#' checkinstall.shiny.plsda()
 #'
 #' @export
 #'
@@ -28,16 +26,6 @@ checkinstall.plsda <- function() {
 
 }
 
-checkinstall.shiny.plsda <- function() {
 
-  packages <- c("shiny","readxl", "dplyr", "plotly")
-  install.packages(setdiff(packages, rownames(installed.packages())))
-  library(shiny)
-  library(readxl)
-  library(dplyr)
-  library(plotly)
-
-
-}
 
 

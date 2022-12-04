@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkinstall.R
 \name{checkinstall.plsda}
 \alias{checkinstall.plsda}
-\title{checkinstall}
+\title{checkinstall.plsda}
 \usage{
 checkinstall.plsda()
 }
@@ -12,10 +12,8 @@ obj plsda object
 \description{
 functions to check if all packages are installed
 checkinstall.plsda function to check package that the library pls needs
-checkinstall.shiny.plsda function to check package that the shiny app pls needs
 }
 \examples{
 checkinstall.plsda()
-checkinstall.shiny.plsda()
 
 }
