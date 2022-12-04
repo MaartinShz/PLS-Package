@@ -38,6 +38,6 @@ split_sample = function(data, train_perc = 0.7){
   train = head(shuffled_data,n)
   test = tail(shuffled_data,nrow(data)-n)
 
-  #return in one list the train dsataset and the test dataset
+  #return in one list the train dataset and the test dataset
   return(list('train' = train, 'test' = test))
 }
