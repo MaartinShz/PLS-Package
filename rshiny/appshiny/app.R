@@ -65,8 +65,11 @@ ui <- fluidPage(
                tabPanel("Plots",
                         sidebarLayout(
                           sidebarPanel(
+                            strong(h1("Composant Scree Plot : ")),
                             actionButton("btnHist", "Composant Plot"),
                             tags$hr(),
+
+                            strong(h1("Composant Map : ")),
                             numericInput("ncomp1", "Composent A :", 1, min = 1),
                             numericInput("ncomp2", "Composent B :", 2, min = 2),
                             actionButton("btnPlot", "Composant Map"),
@@ -217,7 +220,7 @@ server <- function(input, output) {
 
     # Plot part
     plotMap <- eventReactive(input$btnPlot,{
-      if(!is.null(fit()$obj) & ncol(fit()$obj$x_loadings) <= max(input$ncomp1, input$ncomp2)) # check if we get the result of the fit
+      if(!is.null(fit()$obj) & ncol(fit()$obj$x_loadings) >= max(input$ncomp1, input$ncomp2)) # check if we get the result of the fit
         {
 
           comp1 = fit()$obj$x_loadings[,input$ncomp1]
@@ -236,7 +239,10 @@ server <- function(input, output) {
           }
 
           return(graph)
-        }
+      }
+      else{
+        print("erreur")
+      }
 
     })
 
