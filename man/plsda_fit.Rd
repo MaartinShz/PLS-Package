@@ -12,7 +12,7 @@ formula an object of class formula use to select exolicative data and target dat
 data dataframe of the train dataset
 ncomp integer number of composant
 var.select boolean for use the vip function
-centre boolean if the data need to be normalize}
+center boolean if the data need to be normalize}
 }
 \value{
 obj plsda object with attributes below
