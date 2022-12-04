@@ -104,45 +104,45 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, center=T,
 
 
 
-  ###########################  ###########################
+  ########################################################
 
-  #matrice des poids des composantes de X
+  #matrix composants X weights
   Xweights = data.frame(matrix(rep(0), nrow = ncol(x), ncol=ncomp))
   rownames(Xweights) = colnames(x)
 
-  #matrice des composantes de X # loadings # var latentes
+  #matrix of X loadings # latents variables
   Xloadings = data.frame(matrix(rep(0), nrow = ncol(x), ncol=ncomp))
   rownames(Xloadings) = colnames(x)
 
-  #matrice des scores de X
+  #matrix X scores
   Xscores = data.frame(matrix(rep(0), nrow = nrow(x), ncol=ncomp))
 
-  #matrice des scores de Y
+  #matrix Y scores
   Yscores = data.frame(matrix(rep(0), nrow = nrow(x), ncol=ncomp))
 
-  #matrice des composantes de Y # loadings # var latentes
+  #matrix of y loadings # latants varaibles
   Yloadings = data.frame(matrix(rep(0), nrow = ncol(y), ncol = ncomp))
   rownames(Yloadings) = colnames(y)
 
-  ###########################  ###########################
+  ########################################################
 
   for(k in 1:ncomp){
     u <- as.matrix(y[,1])
 
-    w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
-    w = w / sqrt(sum(w^2)) # normalization de w
+    w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #matrix composants X weights
+    w = w / sqrt(sum(w^2)) # normalization of w
 
     temp=0
     iteration = 0
 
-    while(abs(mean(w)-mean(temp)) > 1e-10){
+    while(abs(mean(w)-mean(temp)) > 1e-10){ # stop if results converge
       iteration = iteration + 1
       temp=w
-      t = x %*% w / (sum(w^2)) #t(x) #matrice des scores de X
-      q = (t(y) %*% t) / (sum(t^2))  #matrice des composantes de Y # loadings
-      u = (y %*% q) / (sum(q^2)) #t(y) #matrice des scores de Y
-      w = (t(x) %*% u) / (sum(u^2)) #t(u) %*% u #dim(4 1)   #matrice des poids des composantes de X
-      w = w / sqrt(sum(w^2)) # normalization de w
+      t = x %*% w / (sum(w^2)) #matrix X scores
+      q = (t(y) %*% t) / (sum(t^2))  #matrix Y loadings
+      u = (y %*% q) / (sum(q^2)) #t(y) #matrix Y scores
+      w = (t(x) %*% u) / (sum(u^2)) # (t(u) %*% u) # matrix composants X weights
+      w = w / sqrt(sum(w^2)) #normalization of w
 
       if (iteration>500) {
         stop("PLS regression cannot converge")
@@ -150,11 +150,11 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, center=T,
 
     }
 
-    P = (t(x) %*% as.matrix(t)) / (sum(t^2)) #matrice des composantes de X # loadings
+    P = (t(x) %*% as.matrix(t)) / (sum(t^2)) #matrix X loadings
     x = x - t %*% t(P)
     y = y - (t %*% t(q))
 
-    #stockage des colonnes
+    #datas stock in dataframes
 
     Xweights[, k] <- w
     Xscores[, k] <- t
