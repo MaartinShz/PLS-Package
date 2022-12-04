@@ -1,0 +1,2 @@
+export("ah", "BM", "cm", "fit", "get_dummies", "GridSearchCV", "method", "newdata", "obj", "plsda", "plsda_fit", "plsTrain", "predict", "predTest", "print.plsda", "split_sample",
+       "summary.plsda", "train", "Xtest", "Ytest")
