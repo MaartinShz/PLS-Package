@@ -6,7 +6,7 @@
 -   [Function fit](#function-fit)
     -   [Parameters](#parameters)
     -   [Function usage](#function-usage---print)
--   [Function VIP](#
+-   [Function VIP](#vip-function)
 -   [Function predict](#function-predict)
     -   [Parameters](#parameters-1)
     -   [Function usage](#function-usage)
@@ -69,7 +69,7 @@ help(plsda)
 The first step to use our package, is to create a PLSDA object. To do this, we need to call the function plsda.
 
 ```
-obj = plsdaSise::plsda()
+obj = plsda()
 ```
 
 ## Function fit
@@ -92,10 +92,10 @@ This function have many parameters :
 Here some examples of using the function.
 
 ```
-fit = plsdaSise::plsda_fit(obj,Species~., iris)
+fit = plsda_fit(obj,Species~., iris)
 
 #Here we want same thing but with a selection of variable and a define number of composant
-fit = plsdaSise::plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
+fit = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
 
 ```
 
@@ -153,7 +153,7 @@ There is 3 parameters :
 To predict the target of our dataset we need to use the function plsda_predict
 
 ```
-plsdaSise::plsda_predict(obj,newdata,type = "class")
+plsda_predict(obj,newdata,type = "class")
 ```
 Here we have the value of the prediction by observation :
 
@@ -161,7 +161,7 @@ Here we have the value of the prediction by observation :
 
 
 ```
-plsdaSise::plsda_predict(obj,newdata,type = "posterior")
+plsda_predict(obj,newdata,type = "posterior")
 ```
 
 Here we have the probabilty of class membership by observation :
@@ -235,13 +235,13 @@ Except the last plot, plots take only one parameter : Object PLSDA.
 Here the line code that allow you to make the plot.
 
 ```
-plsdaSise::plot.scree(obj)
+plot.scree(obj)
 ```
 
 ![image](https://user-images.githubusercontent.com/114392261/205472638-28588055-c233-42fb-a525-4b2afea9cd7e.png)
 
 ```
-plsdaSise::plot.varCorr(obj)
+plot.varCorr(obj)
 ```
 ![image](https://user-images.githubusercontent.com/114392261/205472643-fd3f7cef-c7d1-4696-a1e9-1c915c3be1d1.png)
 
@@ -249,7 +249,7 @@ For the last graph, we need 2 more parameters. comp1 and comp2, there are the 2 
 Look at the example below.
 
 ```
-plsdaSise::variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
+variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
 ```
 
 ![image](https://user-images.githubusercontent.com/114392261/205472646-08d47897-0869-4a85-a78a-257102a0fb48.png)
