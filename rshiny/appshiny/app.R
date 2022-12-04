@@ -62,7 +62,20 @@ ui <- fluidPage(
                         )
                ),
                # Page 3 for show plot based on fit result
-               tabPanel("Plots"),
+               tabPanel("Plots",
+                        sidebarLayout(
+                          sidebarPanel(
+                            numericInput("ncomp1", "Composent A :", 1, min = 1),
+                            numericInput("ncomp2", "Composent B :", 2, min = 2),
+                            actionButton("btnPlot", "Plot"),
+                          ),
+                          mainPanel(tabsetPanel(
+                            tabPanel(plotlyOutput("graph"))
+                          ))
+                        )
+
+
+                        ),
                # Page 4 for export prediction on a csv file based on predict result
                tabPanel("Export",
                         sidebarLayout(
@@ -200,6 +213,42 @@ server <- function(input, output) {
     output$export=renderDataTable({export()})
 
 
+    # Plot part
+    plot <- eventReactive(input$btnPlot,{
+      if(!is.null(fit()$obj)) # check if we get the result of the fit
+        {
+
+          comp1 = fit()$obj$x_loadings[,input$ncomp1]
+          comp2 = fit()$obj$x_loadings[,input$ncomp2]
+
+
+          graph <- plot_ly()
+          for (i in 1:ncol(fit()$obj$x)){
+            graph = add_trace(graph, mode="markers", name=colnames(fit()$obj$x)[i], x=comp1[i], y=comp2[i])
+            graph = add_trace(graph, mode = 'lines', x=c(0,comp1[i]),y =c(0,comp2[i]), color = 'rgba(0,0,0,1)')
+            graph = layout(graph, legend=list(title=list(text='Variables Map')),
+                           xaxis = list(title = 'Comp1',zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
+                           yaxis = list(title = 'Comp2',zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
+                           plot_bgcolor='#d9d9d9')
+          }
+
+
+          return(graph)
+        }
+
+
+
+
+
+    })
+
+
+    output$graph <- renderPlotly({
+      plot()
+    })
+
+
 }
 # Run the application shiny
+checkinstall.shiny.plsda()
 shinyApp(ui = ui, server = server)

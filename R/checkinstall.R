@@ -30,8 +30,13 @@ checkinstall.plsda <- function() {
 
 checkinstall.shiny.plsda <- function() {
 
-  packages <- c("shiny","readxl", "dplyr")
+  packages <- c("shiny","readxl", "dplyr", "plotly")
   install.packages(setdiff(packages, rownames(installed.packages())))
+  library(shiny)
+  library(readxl)
+  library(dplyr)
+  library(plotly)
+
 
 }
 
