@@ -223,6 +223,7 @@ By default, the prediction's type is "posterior", so you can change it before th
 ![image](https://user-images.githubusercontent.com/114392261/205501021-3a58856d-2bce-43b1-890b-fae1c0d6f102.png)
 
 Finally, if you don't split the Data, you can choose your file test with the final option below the prediction.
+Be careful to select the exact same data format, select the good separator. Data test need to have the target varaible too.
 
 #### Plots
 The plot tab contains 2 different graphs. The first one is a scree plot that show us the eigen values of each composant of the model.
