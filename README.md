@@ -6,6 +6,8 @@
 -   [Function fit](#function-fit)
     -   [Parameters](#parameters)
     -   [Function usage](#function-usage---print)
+-   [Function predict](#function-predict)
+    -   [Parameters](#parameters-1)
 
 
 
@@ -84,7 +86,11 @@ print(fit)
 image print.png
 ```
 
-## Prediction - Usage
+## Function predict
+
+Finally, we can use the prediction model to use on a test data.
+
+### Parameters
 
 ## Display
 
