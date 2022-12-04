@@ -68,7 +68,8 @@ ui <- fluidPage(
                             strong(h1("Composant Scree Plot : ")),
                             actionButton("btnHist", "Composant Plot"),
                             tags$hr(),
-
+                            strong(verbatimTextOutput("NumberCompo", placeholder = TRUE)),
+                            tags$hr(),
                             strong(h1("Composant Map : ")),
                             numericInput("ncomp1", "Composent A :", 1, min = 1),
                             numericInput("ncomp2", "Composent B :", 2, min = 2),
@@ -117,7 +118,7 @@ server <- function(input, output) {
             }
         }
     })
-    output$contents=renderDataTable({head(data(),10)}) # Print the head of the data
+    output$contents=renderDataTable({head(data(),100)}) # Print the head of the data
 
     output$xvar=renderUI({ # print all variables of the data imported in explicative field # all can be select
         NamesX=colnames(data())
@@ -218,6 +219,12 @@ server <- function(input, output) {
     output$export=renderDataTable({export()})
 
 
+
+
+
+
+
+
     # Plot part
     plotMap <- eventReactive(input$btnPlot,{
       if(!is.null(fit()$obj) & ncol(fit()$obj$x_loadings) >= max(input$ncomp1, input$ncomp2)) # check if we get the result of the fit
@@ -230,7 +237,7 @@ server <- function(input, output) {
           graph <- plot_ly()
           for (i in 1:ncol(fit()$obj$x)){
             graph = add_trace(graph, mode="markers", name=colnames(fit()$obj$x)[i], x=comp1[i], y=comp2[i])
-
+            # Composant Map Plot
             graph = layout(graph, legend=list(title=list(text='Variables Map')),
                            xaxis = list(title = paste('Comp',input$ncomp1),zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
                            yaxis = list(title = paste('Comp',input$ncomp2),zerolinecolor = '#092f4b',zerolinewidth = 1,gridcolor = 'ffff',range = c(-1.5,1.5)),
@@ -239,9 +246,6 @@ server <- function(input, output) {
           }
 
           return(graph)
-      }
-      else{
-        print("erreur")
       }
 
     })
@@ -252,10 +256,12 @@ server <- function(input, output) {
     })
 
     plotScree<- eventReactive(input$btnHist,{
+
+      output$NumberCompo <- renderText({ paste("Number of Composant in Fit : \n", fit()$obj$ncomp ) })
       if(!is.null(fit()$obj)) # check if we get the result of the fit
       {
         nbvar = length(fit()$obj$eigen$values)
-
+        #Composant Scree Plot
         hist = plot_ly()
         for (i in 1:nbvar)
           {
