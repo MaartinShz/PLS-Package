@@ -46,6 +46,34 @@ The first step to use our package, is to create a PLSDA object. To do this, we n
 obj = plsda()
 ```
 
+## Function fit
+
+After the construction of the object, we can apply the function plsda_fit to our oject.
+This function have many parameters :
+
+- object
+- formula
+- data
+- ncomp
+- var.select
+- center
+- threshold
+
+4 of them have a value by default so we will explain here only the 3 paramaters that you need to use for the function. Object is a PLSDA object created above, formula is an object of class formula use to select explicative data and target data of the dataset and finaly there is data that we want to apply a PLS regression.
+Here some examples of using the function.
+
+```
+fit = plsda_fit(obj,Species~., iris)
+
+#Here we want same thing but with a selection of variable and a define number of composant
+fit = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
+
+```
+
+If you want to see the result, you can print it and you will see a list of 14 features. We overload the print function for this object so you only need to use the command "print".
+```
+print(fit)
+```
 
 ## Prediction - Usage
 
