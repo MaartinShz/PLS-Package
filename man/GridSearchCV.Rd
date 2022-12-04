@@ -24,7 +24,8 @@ model : Best model from the cross-validation
 fscore : F-score of the model
 }
 \description{
-GridSearchCV
+First of all, this function will make a cross validation of the dataset and will calculate the F1-score.
+The best model of this will be return with his fscore.
 }
 \examples{
 GridSearchCV(obj,Species~.,Iris)

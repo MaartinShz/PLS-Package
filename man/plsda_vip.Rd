@@ -4,10 +4,10 @@
 \alias{plsda_vip}
 \title{Variable Importance in Projection}
 \usage{
-plsda_vip(Object, formula, threshold = 0.8)
+plsda_vip(Object, formula, threshold = 0.7)
 }
 \arguments{
-\item{threshold}{threshold of variable's importance. 0.8 by default.}
+\item{threshold}{threshold of variable's importance. 0.7 by default.}
 
 \item{object}{A PLSDA class model.}
 }
@@ -19,10 +19,10 @@ newX : New variables
 Newdataset : New dataset constructed with the selected variables
 }
 \description{
-Variable Importance in Projection
+This function search for best variables to construct the best model.
 }
 \examples{
 plsda_vip=(object = objPLSDA)
-plsda_vip=(object = objPLSDA,threshold=0.7)
+plsda_vip=(object = objPLSDA,threshold=0.8)
 
 }
