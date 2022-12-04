@@ -71,8 +71,8 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
 
 
   if(is.null(ncomp) || !is.numeric(ncomp) || ncomp>min(nrow(data), ncol(data))){
-    # if ncomp is null or in a wrong format we take the Range of the matrix
-    ncomp = min(nrow(data), ncol(data))
+    # if ncomp is null or in a wrong format we initialize it at 2
+    ncomp = 2
   }
 
 

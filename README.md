@@ -9,6 +9,7 @@
 -   [Function predict](#function-predict)
     -   [Parameters](#parameters-1)
     -   [Function usage](#function-usage)
+-   [Plots](#plot)
 
 
 ## Introduction
@@ -43,6 +44,8 @@ If you have a question about a function you can run the command "help". That wil
 ```
 help(plsda)
 ```
+
+![image](https://user-images.githubusercontent.com/114392261/205472717-543fbb64-e8ec-427c-8929-eaf732a36871.png)
 
 ## PLSDA object
 
@@ -79,12 +82,17 @@ fit = plsdaSise::plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
 
 ```
 
-If you want to see the result, you can print it and you will see a list of 14 features. We overload the print function for this object so you only need to use the command "print".
+If you want to see the result, you can print it and you will see a list of 14 features. We overload the print method for this object so you only need to use the command "print".
 ```
 print(fit)
-
-image print.png
 ```
+You can see below the lasts lines of the print
+
+![Image](https://user-images.githubusercontent.com/114392261/205471841-2db516f4-bfea-491c-8aa8-c1e4ffb81508.png)
+
+We overload the summary method too. Here it is the result :
+
+![image](https://user-images.githubusercontent.com/114392261/205472256-64eaf090-bef0-46b9-adc8-71f7d6eb1f02.png)
 
 ## Function predict
 
@@ -102,15 +110,50 @@ To predict the target of our dataset we need to use the function plsda_predict
 
 ```
 plsdaSise::plsda_predict(obj,newdata,type = "class")
-image result.png
 ```
+Here we have the value of the prediction by observation :
+
+![image](https://user-images.githubusercontent.com/114392261/205471965-5fd14788-becf-4b14-9f9f-0eaea6957e7c.png)
+
 
 ```
 plsdaSise::plsda_predict(obj,newdata,type = "posterior")
-image result.png
 ```
 
+Here we have the probabilty of class membership by observation :
+
+![image](https://user-images.githubusercontent.com/114392261/205471939-cd7b21ed-2265-4973-91a8-18f7fd0f797e.png)
+
 ## Plot
+
+Our package offer some plot to observe the data.
+There are 3 different plots available : 
+
+- scree plot
+- varcorr plot
+- variableMap plot
+
+Except the last plot, plots take only one parameter : Object PLSDA.
+Here the line code that allow you to make the plot.
+
+```
+plsdaSise::plot.scree(obj)
+```
+
+![image](https://user-images.githubusercontent.com/114392261/205472638-28588055-c233-42fb-a525-4b2afea9cd7e.png)
+
+```
+plsdaSise::plot.varCorr(obj)
+```
+![image](https://user-images.githubusercontent.com/114392261/205472643-fd3f7cef-c7d1-4696-a1e9-1c915c3be1d1.png)
+
+For the last graph, we need 2 more parameters. comp1 and comp2, there are the 2 components that we want to use for the plot.
+
+```
+plsdaSise::variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)
+```
+
+![image](https://user-images.githubusercontent.com/114392261/205472646-08d47897-0869-4a85-a78a-257102a0fb48.png)
 
 ## Application r-Shiny
 

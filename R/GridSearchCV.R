@@ -103,3 +103,6 @@ GridSearchCV = function(ObjectPLSDA, formula, data, cv = 5, method = 'rsplit'){
 
     return(list("model" = model, "fscore" = fscore))
 }
+
+
+#GridSearchCV(obj,Species~.,data)
