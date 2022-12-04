@@ -64,8 +64,8 @@ GridSearchCV = function(ObjectPLSDA=obj, formula, data, cv = 5, method = 'rsplit
     for(k in 1:cv){
 
       # selection of X the predictive data  and  Y the target data
-      X = model.matrix(Species~.,data=data)[,-1]
-      Y = model.response(model.frame(Species~., data = data))
+      X = model.matrix(formula,data=data)[,-1]
+      Y = model.response(model.frame(formula, data = data))
       Y = as.factor(as.vector(Y))
       Ycol = setdiff(colnames(data),colnames(X))
 
@@ -77,7 +77,7 @@ GridSearchCV = function(ObjectPLSDA=obj, formula, data, cv = 5, method = 'rsplit
       Xtest = data.frame(test[,colnames(X)])
       Ytest = test[,Ycol]
       #learning from the train and predict in the test
-      plsTrain = plsda_fit(ObjectPLSDA, Species~., train)
+      plsTrain = plsda_fit(ObjectPLSDA, formula, train)
       predTest = plsda_predict(plsTrain, Xtest,type = "class")
 
       #confusion matrix
@@ -103,6 +103,8 @@ GridSearchCV = function(ObjectPLSDA=obj, formula, data, cv = 5, method = 'rsplit
     fscore = realfscorevector[which.max(realfscorevector)]
     return(list("model" = model, "fscore" = fscore ))
 }
+
+
 
 
 #ah = GridSearchCV(obj,Species~.,iris)

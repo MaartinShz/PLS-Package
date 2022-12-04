@@ -140,6 +140,27 @@ Here we have the probabilty of class membership by observation :
 
 ![image](https://user-images.githubusercontent.com/114392261/205471939-cd7b21ed-2265-4973-91a8-18f7fd0f797e.png)
 
+When you finish all steps, you can make a confusion matrix with the result of the prediction.
+We show you how to do this below.
+
+```
+#We create a dataset for training, X variables for test and target variable for test too
+newdata = split_sample(iris)
+train = newdata$train
+Xtest= newdata$test[,-ncol(iris)]
+Ytest= newdata$test[,ncol(iris)]
+
+#Create object
+obj = plsda()
+#fit + predict
+plsTrain = plsda_fit(obj, Species~., train)
+predTest = plsda_predict(plsTrain, Xtest,type = "class")
+
+#confusion matrix
+cm = table(Ytest, predTest)
+print(cm)
+```
+
 ## Plot
 
 Our package offer some plot to observe the data.
