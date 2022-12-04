@@ -9,6 +9,7 @@
 -   [Function predict](#function-predict)
     -   [Parameters](#parameters-1)
     -   [Function usage](#function-usage)
+-   [Plots](#plot)
 
 
 ## Introduction
