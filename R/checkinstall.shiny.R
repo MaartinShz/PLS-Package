@@ -7,11 +7,6 @@
 #' @usage
 #' checkinstall.shiny.plsda()
 #'
-#'
-#' @return
-#' obj plsda object
-#'
-#'
 #' @examples
 #' checkinstall.shiny.plsda()
 #'

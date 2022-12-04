@@ -6,9 +6,6 @@
 \usage{
 checkinstall.plsda()
 }
-\value{
-obj plsda object
-}
 \description{
 functions to check if all packages are installed
 checkinstall.plsda function to check package that the library pls needs

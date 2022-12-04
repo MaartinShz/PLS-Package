@@ -6,9 +6,6 @@
 \usage{
 checkinstall.shiny.plsda()
 }
-\value{
-obj plsda object
-}
 \description{
 functions to check if all packages are installed
 checkinstall.shiny.plsda function to check package that the shiny app pls needs

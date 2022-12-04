@@ -8,10 +8,6 @@
 #' checkinstall.plsda()
 #'
 #'
-#' @return
-#' obj plsda object
-#'
-#'
 #' @examples
 #' checkinstall.plsda()
 #'
