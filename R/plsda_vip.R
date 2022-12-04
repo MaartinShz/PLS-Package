@@ -6,7 +6,7 @@
 #' @param object
 #' A PLSDA class model.
 #' @param threshold
-#' threshold of variable's importance. 0.8 by default.
+#' threshold of variable's importance. 0.5 by default.
 #' @return
 #' VIP : Most importants variables in the model.
 #' \cr
@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-plsda_vip<-function(Object,formula,threshold=0.8){
+plsda_vip<-function(Object,formula,threshold=0.5){
 
   # Taking information from the object PLSDA
   xs=Object$x_scores
