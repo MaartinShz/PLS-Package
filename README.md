@@ -10,6 +10,7 @@
     -   [Parameters](#parameters-1)
     -   [Function usage](#function-usage)
 -   [Plots](#plot)
+-   [Rshiny app](#application-r-shiny)
 
 
 ## Introduction
@@ -33,10 +34,18 @@ library(devtools)
 install_github("MaartinShz/PLS-Package")
 ```
 
-Once you have install the package, you should use the command "plsdaSise::" before the function to use it.
+Once you have install the package, you can use the command "plsdaSise::" before the function to use it.
 
 ```
 plsdaSise::plsda()
+```
+
+Otherwise, to avoid the annoying prefix, you should use this command and then you are free to use all the functions of our package easily.
+
+```
+library(plsdaSise)
+
+plsda()
 ```
 
 If you have a question about a function you can run the command "help". That will show you some explanation about the function and also some examples.
@@ -148,6 +157,7 @@ plsdaSise::plot.varCorr(obj)
 ![image](https://user-images.githubusercontent.com/114392261/205472643-fd3f7cef-c7d1-4696-a1e9-1c915c3be1d1.png)
 
 For the last graph, we need 2 more parameters. comp1 and comp2, there are the 2 components that we want to use for the plot.
+Look at the example below.
 
 ```
 plsdaSise::variableMap.plsda(obj,obj$x_scores$X1,obj$x_scores$X2)

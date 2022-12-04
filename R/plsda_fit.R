@@ -14,7 +14,7 @@
 #' data dataframe of the train dataset
 #' ncomp integer number of composant
 #' var.select boolean for use the vip function
-#' centre boolean if the data need to be normalize
+#' center boolean if the data need to be normalize
 #'
 #' @return
 #' obj plsda object with attributes below
@@ -59,7 +59,7 @@
 #' @export
 #'
 
-plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T, threshold = 0.8){
+plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, center=T, threshold = 0.8){
 
   if (class(object)!="PLSDA") {
     stop("Object's class is not PLSDA")
@@ -77,7 +77,7 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
 
 
   if (var.select == T){
-    obj = plsda_fit(object = object, formula = formula, data= data, ncomp=ncomp, var.select = F, centre=centre)
+    obj = plsda_fit(object = object, formula = formula, data= data, ncomp=ncomp, var.select = F, center=center)
     newX = plsda_vip(obj,threshold = threshold)$newX
     X = data[,newX]
   }else{
@@ -92,7 +92,7 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
   # recode in dummy values the target data
   y = get_dummies(Y)
 
-  if(centre){
+  if(center){
     # data normalization
     x = scale(X)
     y = scale(y)
@@ -201,7 +201,7 @@ plsda_fit<-function(object, formula, data, ncomp=NULL, var.select = F, centre=T,
 }
 
 #obj = plsda()
-#obj = plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
+#obj = plsda_fit(obj,Species~., iris,ncomp=2, var.select = F)
 #plot.varCorr(obj)
 
 #print(obj)
