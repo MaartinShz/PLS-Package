@@ -89,6 +89,7 @@ You can see below the lasts lines of the print
 
 We overload the summary method too. Here it is the result :
 
+![image](https://user-images.githubusercontent.com/114392261/205472256-64eaf090-bef0-46b9-adc8-71f7d6eb1f02.png)
 
 ## Function predict
 
