@@ -79,13 +79,16 @@ fit = plsdaSise::plsda_fit(obj,Species~., iris,ncomp=2, var.select = T)
 
 ```
 
-If you want to see the result, you can print it and you will see a list of 14 features. We overload the print function for this object so you only need to use the command "print".
+If you want to see the result, you can print it and you will see a list of 14 features. We overload the print method for this object so you only need to use the command "print".
 ```
 print(fit)
 ```
 You can see below the lasts lines of the print
 
 ![Image](https://user-images.githubusercontent.com/114392261/205471841-2db516f4-bfea-491c-8aa8-c1e4ffb81508.png)
+
+We overload the summary method too. Here it is the result :
+
 
 ## Function predict
 
