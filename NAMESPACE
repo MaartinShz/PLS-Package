@@ -2,6 +2,8 @@
 
 S3method(plot,scree)
 S3method(plot,varCorr)
+S3method(print,plsda)
+S3method(summary,plsda)
 export(GridSearchCV)
 export(checkinstall.plsda)
 export(checkinstall.shiny.plsda)

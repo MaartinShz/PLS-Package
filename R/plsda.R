@@ -38,7 +38,28 @@ plsda = function(ncomp=NULL){
   return(instance)
 }
 
-#print() fournit au moins une fonction de classement permettant d’attribuer les classes aux individus
+#' print function for PLSDA Class
+#'
+#' @description
+#' Overload of print function
+#'
+#' @usage
+#' obj = plsda()
+#'
+#' @param
+#' obj an pls object
+#'
+#' @return
+#' observe value of an pls object
+#'
+#' @examples
+#' obj = plsda()
+#' print(obj)
+
+#' @export
+#'
+
+
 
 #Overload of print function
 print.plsda = function(object){
@@ -62,6 +83,29 @@ print.plsda = function(object){
     print("intercept : ", object$intercept, "\n")
   }
 }
+
+#' summary for PLSDA Class
+#'
+#' @description
+#' Overload of summary function
+#'
+#'
+#' @usage
+#' summary(obj)
+#'
+#' @param
+#' obj an pls object
+#'
+#' @return
+#' observe value of explicative varaibles in an object pls
+#'
+#' @examples
+#' obj = plsda()
+#' summary(obj)
+#'
+#' @export
+#'
+
 
 #Overload of summary function
 summary.plsda = function(object){
